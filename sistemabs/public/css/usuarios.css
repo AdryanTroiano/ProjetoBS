@@ -1,0 +1,1011 @@
+/* =========================================================
+   USUÁRIOS / FUNCIONÁRIOS
+   ========================================================= */
+
+
+/* =========================================================
+   FORMULÁRIOS - CADASTRO / EDIÇÃO
+   ========================================================= */
+
+.usuarios-page {
+    width: 100%;
+    padding: 40px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.usuarios-container {
+    width: 100%;
+    max-width: 400px;
+
+    padding: 30px;
+
+    background-color: #ffffff;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.15);
+
+    box-sizing: border-box;
+}
+
+.usuarios-container h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.usuarios-campo {
+    margin-bottom: 18px;
+}
+
+.usuarios-campo label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-weight: 600;
+}
+
+.usuarios-campo input,
+.usuarios-campo select {
+    width: 100%;
+    height: 40px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+
+    background-color: #ffffff;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.usuarios-campo input:focus,
+.usuarios-campo select:focus {
+    outline: none;
+
+    border-color: #0d6efd;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 110, 253, 0.12);
+}
+
+
+/* =========================================================
+   BOTÃO PADRÃO DE FORMULÁRIO
+   ========================================================= */
+
+.usuarios-submit {
+    width: 100%;
+    min-height: 42px;
+
+    margin-top: 5px;
+    padding: 10px 16px;
+
+    border: 1px solid #0d6efd;
+    border-radius: 6px;
+
+    background-color: #0d6efd;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.usuarios-submit:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+
+.usuarios-submit:active {
+    background-color: #0a58ca;
+}
+
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
+
+.usuarios-erro,
+.usuarios-sucesso {
+    padding: 10px;
+    margin-bottom: 15px;
+
+    border-radius: 5px;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+.usuarios-erro {
+    color: #b00020;
+    background-color: #ffe8e8;
+}
+
+.usuarios-sucesso {
+    color: #155724;
+    background-color: #d4edda;
+}
+
+
+/* =========================================================
+   LISTAGEM DE FUNCIONÁRIOS
+   ========================================================= */
+
+.usuarios-listagem {
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 30px 20px;
+
+    box-sizing: border-box;
+}
+
+.usuarios-listagem-topo {
+    width: 100%;
+
+    margin-bottom: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.usuarios-listagem-topo h2 {
+    margin: 0 0 5px;
+}
+
+.usuarios-listagem-topo p {
+    margin: 0;
+
+    color: #6c757d;
+}
+
+
+/* =========================================================
+   BOTÃO + / NOVO FUNCIONÁRIO
+   ========================================================= */
+
+.usuarios-btn-adicionar {
+    width: 46px;
+    min-width: 46px;
+    height: 46px;
+
+    padding: 0;
+    margin: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0d6efd;
+
+    border: 1px solid #0d6efd;
+    border-radius: 50%;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.15);
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.usuarios-btn-adicionar i {
+    margin: 0;
+    padding: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    line-height: 1;
+}
+
+.usuarios-btn-adicionar:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    transform: none;
+
+    box-shadow:
+        0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+.usuarios-btn-adicionar:active {
+    background-color: #0a58ca;
+
+    transform: none;
+}
+
+.usuarios-btn-adicionar:focus-visible {
+    outline:
+        3px solid rgba(13, 110, 253, 0.25);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.usuarios-tabela-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    background-color: #ffffff;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.usuarios-tabela {
+    width: 100%;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    background-color: #ffffff;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+.usuarios-tabela th,
+.usuarios-tabela td {
+    padding: 14px 20px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.usuarios-tabela th {
+    background-color: #f8f9fa;
+
+    color: #495057;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    border-bottom: 2px solid #dee2e6;
+}
+
+.usuarios-tabela td {
+    color: #333333;
+
+    font-family:
+        "Segoe UI",
+        -apple-system,
+        BlinkMacSystemFont,
+        Roboto,
+        sans-serif;
+
+    font-size: 15px;
+}
+
+.usuarios-tabela tbody tr {
+    transition:
+        background-color 0.2s ease;
+}
+
+.usuarios-tabela tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+
+/* =========================================================
+   AÇÕES DA TABELA
+   ========================================================= */
+
+.usuarios-tabela .acoes-tabela {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 10px !important;
+}
+
+
+/* =========================================================
+   BOTÃO BASE DAS AÇÕES
+   ========================================================= */
+
+.usuarios-tabela .btn-acao,
+.usuarios-tabela a.btn-acao,
+.usuarios-tabela button.btn-acao {
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border-radius: 8px !important;
+
+    font-family:
+        "Segoe UI",
+        -apple-system,
+        BlinkMacSystemFont,
+        Roboto,
+        sans-serif !important;
+
+    font-size: 15px !important;
+
+    line-height: 1 !important;
+
+    text-decoration: none !important;
+
+    cursor: pointer !important;
+
+    box-sizing: border-box !important;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease !important;
+}
+
+
+/* =========================================================
+   ÍCONES DAS AÇÕES
+   ========================================================= */
+
+.usuarios-tabela .btn-acao i {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: 15px !important;
+    line-height: 1 !important;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   VISUALIZAR
+   ========================================================= */
+
+.usuarios-tabela .btn-visualizar {
+    background-color: #0d6efd !important;
+
+    border:
+        1px solid #0d6efd !important;
+
+    color: #ffffff !important;
+}
+
+.usuarios-tabela .btn-visualizar:hover {
+    background-color: #0b5ed7 !important;
+
+    border-color: #0a58ca !important;
+
+    color: #ffffff !important;
+
+    transform:
+        translateY(-2px) !important;
+
+    box-shadow:
+        0 4px 10px
+        rgba(13, 110, 253, 0.25) !important;
+}
+
+
+/* =========================================================
+   EXCLUIR
+   ========================================================= */
+
+.usuarios-tabela .btn-excluir {
+    background-color: #dc3545 !important;
+
+    border:
+        1px solid #dc3545 !important;
+
+    color: #ffffff !important;
+}
+
+.usuarios-tabela .btn-excluir:hover {
+    background-color: #bb2d3b !important;
+
+    border-color: #b02a37 !important;
+
+    color: #ffffff !important;
+
+    transform:
+        translateY(-2px) !important;
+
+    box-shadow:
+        0 4px 10px
+        rgba(220, 53, 69, 0.25) !important;
+}
+
+.usuarios-tabela .btn-acao:active {
+    transform:
+        scale(0.94) !important;
+
+    box-shadow:
+        none !important;
+}
+
+.usuarios-tabela .btn-acao:focus-visible {
+    outline:
+        3px solid rgba(13, 110, 253, 0.25) !important;
+
+    outline-offset:
+        2px !important;
+}
+
+
+/* =========================================================
+   NÍVEL DE ACESSO
+   ========================================================= */
+
+.usuarios-nivel {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+}
+
+.usuarios-nivel.admin {
+    color: #842029;
+
+    background-color: #f8d7da;
+
+    font-weight: 700;
+}
+
+.usuarios-nivel.padrao {
+    color: #41464b;
+
+    background-color: #e2e3e5;
+}
+
+
+/* =========================================================
+   LISTAGEM VAZIA
+   ========================================================= */
+
+.usuarios-vazio {
+    padding: 20px;
+
+    text-align: center;
+
+    background-color: #ffffff;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   DETALHES DO FUNCIONÁRIO
+   ========================================================= */
+
+.usuarios-detalhes {
+    width: calc(100% - 40px);
+    max-width: 800px;
+
+    margin: 40px auto;
+    padding: 30px;
+
+    background-color: #ffffff;
+
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TOPO DOS DETALHES
+   ========================================================= */
+
+.usuarios-detalhes-topo {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+.usuarios-detalhes-topo h2 {
+    margin: 0 0 6px;
+
+    color: #2d3748;
+
+    font-family:
+        "Segoe UI",
+        -apple-system,
+        BlinkMacSystemFont,
+        Roboto,
+        sans-serif;
+
+    font-size: 25px;
+}
+
+.usuarios-detalhes-topo p {
+    margin: 0;
+
+    color: #6c757d;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   CONTEÚDO DOS DETALHES
+   ========================================================= */
+
+.usuarios-detalhes-conteudo {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+.usuarios-detalhes-campo {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.usuarios-detalhes-campo label {
+    margin-bottom: 6px;
+
+    color: #475569;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.usuarios-detalhes-campo input {
+    width: 100%;
+    height: 40px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+
+    background-color: #f8f9fa;
+
+    color: #334155;
+
+    font-family:
+        "Segoe UI",
+        -apple-system,
+        BlinkMacSystemFont,
+        Roboto,
+        sans-serif;
+
+    font-size: 14px;
+
+    box-sizing: border-box;
+}
+
+.usuarios-detalhes-campo input[readonly] {
+    cursor: default;
+}
+
+
+/* =========================================================
+   AÇÕES DOS DETALHES
+   ========================================================= */
+
+.usuarios-detalhes-acoes {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   BOTÕES VOLTAR / EDITAR
+   ========================================================= */
+
+.usuarios-detalhes .btn-voltar-detalhes,
+.usuarios-detalhes .btn-editar-detalhes {
+    min-height: 38px;
+
+    padding: 0 18px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border-radius: 7px;
+
+    font-family:
+        "Segoe UI",
+        -apple-system,
+        BlinkMacSystemFont,
+        Roboto,
+        sans-serif;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* VOLTAR */
+
+.usuarios-detalhes .btn-voltar-detalhes {
+    background-color: #6c757d;
+
+    border: 1px solid #6c757d;
+
+    color: #ffffff;
+}
+
+.usuarios-detalhes .btn-voltar-detalhes:hover {
+    background-color: #5c636a;
+
+    border-color: #565e64;
+
+    color: #ffffff;
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* EDITAR */
+
+.usuarios-detalhes .btn-editar-detalhes {
+    background-color: #198754;
+
+    border: 1px solid #198754;
+
+    color: #ffffff;
+}
+
+.usuarios-detalhes .btn-editar-detalhes:hover {
+    background-color: #157347;
+
+    border-color: #146c43;
+
+    color: #ffffff;
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 4px 10px rgba(25, 135, 84, 0.20);
+}
+
+.usuarios-detalhes .btn-editar-detalhes i,
+.usuarios-detalhes .btn-voltar-detalhes i {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   BOTÕES DA EDIÇÃO
+   ========================================================= */
+
+.botoes-edicao {
+    width: 100%;
+
+    margin-top: 24px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+
+/* =========================================================
+   CANCELAR
+   ========================================================= */
+
+.botoes-edicao .btn-cancelar-edicao {
+    width: 140px;
+    height: 42px;
+
+    margin: 0;
+    padding: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #dc3545;
+
+    border: 1px solid #dc3545;
+    border-radius: 6px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.botoes-edicao .btn-cancelar-edicao:hover {
+    background-color: #bb2d3b;
+
+    border-color: #b02a37;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    transform: none;
+}
+
+.botoes-edicao .btn-cancelar-edicao:active {
+    background-color: #b02a37;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   SALVAR
+   ========================================================= */
+
+.botoes-edicao .btn-salvar-edicao {
+    width: 140px;
+    height: 42px;
+
+    margin: 0;
+    padding: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0d6efd;
+
+    border: 1px solid #0d6efd;
+    border-radius: 6px;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.botoes-edicao .btn-salvar-edicao:hover {
+    background-color: #0b5ed7;
+
+    border-color: #0a58ca;
+
+    transform: none;
+}
+
+.botoes-edicao .btn-salvar-edicao:active {
+    background-color: #0a58ca;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE - TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .usuarios-listagem-topo {
+        align-items: center;
+    }
+
+    .usuarios-tabela {
+        min-width: 650px;
+    }
+
+    .usuarios-detalhes-conteudo {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE - CELULAR
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .usuarios-listagem {
+        padding:
+            20px 10px;
+    }
+
+    .usuarios-listagem-topo {
+        gap: 12px;
+    }
+
+    .usuarios-btn-adicionar {
+        width: 42px;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    .usuarios-btn-adicionar i {
+        font-size: 16px;
+    }
+
+    .usuarios-tabela .acoes-tabela {
+        gap: 7px !important;
+    }
+
+    .usuarios-tabela .btn-acao,
+    .usuarios-tabela a.btn-acao,
+    .usuarios-tabela button.btn-acao {
+        width: 38px !important;
+        min-width: 38px !important;
+        max-width: 38px !important;
+
+        height: 36px !important;
+        min-height: 36px !important;
+        max-height: 36px !important;
+    }
+
+    .usuarios-tabela .btn-acao i {
+        font-size: 14px !important;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE - CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .usuarios-page {
+        padding: 20px 10px;
+    }
+
+    .usuarios-container {
+        padding: 20px;
+    }
+
+    .usuarios-detalhes {
+        width: calc(100% - 20px);
+
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    .usuarios-detalhes-acoes {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .usuarios-detalhes .btn-voltar-detalhes,
+    .usuarios-detalhes .btn-editar-detalhes {
+        width: 100%;
+    }
+
+    .botoes-edicao {
+        gap: 10px;
+    }
+
+    .botoes-edicao .btn-cancelar-edicao,
+    .botoes-edicao .btn-salvar-edicao {
+        width: 120px;
+    }
+}
