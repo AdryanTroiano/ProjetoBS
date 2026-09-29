@@ -2,17 +2,35 @@
 
 class Ubs extends Model
 {
-    public function cadastrar(string $nome): bool
-    {
+    public function cadastrar(
+        string $nome,
+        string $telefone,
+        string $email,
+        string $responsavel,
+        string $cidade
+    ): bool {
         $sql = "
-            INSERT INTO ubs (nome)
-            VALUES (?)
+            INSERT INTO ubs (
+                nome,
+                telefone,
+                email,
+                responsavel,
+                cidade
+            )
+            VALUES (?, ?, ?, ?, ?)
         ";
 
         $stmt = $this->db->prepare($sql);
 
-        return $stmt->execute([$nome]);
+        return $stmt->execute([
+            $nome,
+            $telefone,
+            $email,
+            $responsavel,
+            $cidade
+        ]);
     }
+
 
     public function listarTodas(): array
     {
@@ -28,70 +46,91 @@ class Ubs extends Model
         return $stmt->fetchAll();
     }
 
+
     public function buscarPorId(int $id): ?array
-{
-    $sql = "
-        SELECT *
-        FROM ubs
-        WHERE id = ?
-    ";
+    {
+        $sql = "
+            SELECT *
+            FROM ubs
+            WHERE id = ?
+            LIMIT 1
+        ";
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([$id]);
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$id]);
 
-    $ubs = $stmt->fetch();
+        $ubs = $stmt->fetch();
 
-    return $ubs ?: null;
-}
+        return $ubs ?: null;
+    }
 
-public function atualizar(int $id, string $nome): bool
-{
-    $sql = "
-        UPDATE ubs
-        SET nome = ?
-        WHERE id = ?
-    ";
 
-    $stmt = $this->db->prepare($sql);
+    public function atualizar(
+        int $id,
+        string $nome,
+        string $telefone,
+        string $email,
+        string $responsavel,
+        string $cidade
+    ): bool {
+        $sql = "
+            UPDATE ubs
+            SET
+                nome = ?,
+                telefone = ?,
+                email = ?,
+                responsavel = ?,
+                cidade = ?
+            WHERE id = ?
+        ";
 
-    return $stmt->execute([
-        $nome,
-        $id
-    ]);
-}
+        $stmt = $this->db->prepare($sql);
 
-public function possuiVinculos(int $id): bool
-{
-    $sql = "
-        SELECT id
-        FROM doacoes
-        WHERE ubs_id = ?
+        return $stmt->execute([
+            $nome,
+            $telefone,
+            $email,
+            $responsavel,
+            $cidade,
+            $id
+        ]);
+    }
 
-        UNION
 
-        SELECT id
-        FROM retiradas
-        WHERE ubs_id = ?
-    ";
+    public function possuiVinculos(int $id): bool
+    {
+        $sql = "
+            SELECT id
+            FROM doacoes
+            WHERE ubs_id = ?
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute([
-        $id,
-        $id
-    ]);
+            UNION
 
-    return (bool) $stmt->fetch();
-}
+            SELECT id
+            FROM retiradas
+            WHERE ubs_id = ?
+        ";
 
-public function excluir(int $id): bool
-{
-    $sql = "
-        DELETE FROM ubs
-        WHERE id = ?
-    ";
+        $stmt = $this->db->prepare($sql);
 
-    $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            $id,
+            $id
+        ]);
 
-    return $stmt->execute([$id]);
-}
+        return (bool) $stmt->fetch();
+    }
+
+
+    public function excluir(int $id): bool
+    {
+        $sql = "
+            DELETE FROM ubs
+            WHERE id = ?
+        ";
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute([$id]);
+    }
 }

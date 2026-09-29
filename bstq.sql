@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24/09/2026 às 05:59
+-- Tempo de geração: 29/09/2026 às 14:21
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -137,19 +137,23 @@ INSERT INTO `tipos_sangue` (`id`, `tipo`) VALUES
 
 CREATE TABLE `ubs` (
   `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL
+  `nome` varchar(100) NOT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `responsavel` varchar(150) DEFAULT NULL,
+  `cidade` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `ubs`
 --
 
-INSERT INTO `ubs` (`id`, `nome`) VALUES
-(9, 'UBS Norte'),
-(10, 'UBS Central'),
-(11, 'UBS Leste'),
-(12, 'UBS Sul'),
-(13, 'UBS Oeste');
+INSERT INTO `ubs` (`id`, `nome`, `telefone`, `email`, `responsavel`, `cidade`) VALUES
+(9, 'UBS Norte', NULL, NULL, NULL, NULL),
+(10, 'UBS Central', NULL, NULL, NULL, NULL),
+(11, 'UBS Leste', NULL, NULL, NULL, NULL),
+(12, 'UBS Sul', NULL, NULL, NULL, NULL),
+(13, 'UBS Oeste', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
