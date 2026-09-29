@@ -152,8 +152,8 @@ input[type="submit"]:hover {
 .login-card-header {
     display: block !important;
     position: static !important; /* 🟢 Remove a trava do canto esquerdo */
-    margin-top: 10px !important;
-    margin-bottom: 15px !important;
+    margin-top: -10px !important;
+    margin-bottom: 10px !important;
     text-align: center !important;
     
     /* Mantém o padrão elegante das letras */
