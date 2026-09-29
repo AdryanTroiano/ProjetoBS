@@ -92,7 +92,7 @@ class AuthController extends Controller
         $_SESSION['usuario_nivel'] =
             $usuarioEncontrado['nivel'];
 
-        header('Location: index.php?rota=doadores');
+        header('Location: index.php?rota=dashboard');
         exit;
     }
 
