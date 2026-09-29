@@ -52,14 +52,13 @@
 
         <div class="login-box">
 
-            <span class="login-card-header">
-                Controle Interno de Banco de Sangue
-            </span>
-
             <img
                 src="./images/logo-legacy.png"
                 alt="Logo da empresa"
             >
+            <span class="login-card-header">
+                Controle Interno de Banco de Sangue
+            </span>
 
             <h2>Login</h2>
 

@@ -138,14 +138,29 @@ input[type="submit"]:hover {
     padding-top: 55px !important; /* Dá espaço para o texto não cobrir a logo */
 }
 
-/* Fixa o texto exatamente no canto superior esquerdo */
+/* ==================================================
+   NOVO POSICIONAMENTO DO TÍTULO INTERNO (CENTRALIZADO)
+   ================================================== */
+
+/* Ajusta o card para voltar ao padding padrão do topo */
+.login-box {
+    position: relative;
+    padding: 40px !important; 
+}
+
+/* Transforma o texto em um bloco centralizado entre a logo e o login */
 .login-card-header {
-    position: absolute !important;
-    top: 15px !important;
-    left: 20px !important;
-    font-size: 11px !important; /* Letra pequena estilo etiqueta discreta */
+    display: block !important;
+    position: static !important; /* 🟢 Remove a trava do canto esquerdo */
+    margin-top: 10px !important;
+    margin-bottom: 15px !important;
+    text-align: center !important;
+    
+    /* Mantém o padrão elegante das letras */
+    font-size: 12px !important; 
     font-weight: 600 !important;
-    color: #718096 !important; /* Cinza escuro elegante */
-    text-transform: uppercase !important; /* Letras em maiúsculas */
+    color: #718096 !important; 
+    text-transform: uppercase !important; 
     letter-spacing: 0.5px !important;
 }
+
