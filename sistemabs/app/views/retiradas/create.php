@@ -277,12 +277,12 @@
                 <label for="data">
                     Data:<span class="required">*</span>
                 </label>
-<input 
-    type="date" 
-    name="data_doacao" 
-    id="data_doacao"
+<input
+    type="date"
+    name="data"
+    id="data"
     value="<?= date('Y-m-d'); ?>"
-    required 
+    required
 >
 
             </div>

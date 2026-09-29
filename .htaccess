@@ -1,5 +1,0 @@
-RewriteEngine On
-
-# Ao acessar localhost/projetoweb
-# redireciona para /projetoweb/sistemabs/public/
-RewriteRule ^$ /projetoweb/sistemabs/public/ [R=302,L]
