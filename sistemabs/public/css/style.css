@@ -2050,3 +2050,63 @@ input[placeholder="Ex: UBS Central"] {
     align-items: center !important;
     justify-content: center !important;
 }
+
+/* ==================================================
+   RESPONSIVIDADE DOS BOTÕES NO CELULAR
+   ================================================== */
+@media screen and (max-width: 768px) {
+    /* Faz a caixinha dos botões mudar de linha para coluna */
+    .botoes-edicao {
+        display: flex !important;
+        flex-direction: column !important; /* Força um botão a ficar embaixo do outro */
+        gap: 12px !important; /* Cria um espaço confortável entre eles */
+        width: 100% !important;
+    }
+
+    /* Faz o botão Cancelar (link) ocupar a largura inteira da tela */
+    .btn-cancelar-edicao {
+        width: 100% !important;
+        text-align: center !important;
+        display: block !important;
+        padding: 10px 0 !important;
+        height: auto !important;
+    }
+
+    /* Faz o botão Cadastrar/Enviar ocupar a largura inteira da tela */
+    .btn-enviar-cadastro, 
+    .btn-salvar-edicao,
+    .botoes-edicao button {
+        width: 100% !important; /* Estica o botão azul no celular */
+        height: 40px !important; /* Dá uma altura mais confortável para o clique do dedo */
+        display: inline-flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+}
+
+/* ==================================================
+   CALIBRAÇÃO DE PROPORÇÕES - LISTAR DOAÇÕES
+   ================================================== */
+
+/* Define larguras inteligentes para cada coluna da tabela */
+.table th:nth-child(1) { 
+    width: 45% !important; /* Doador ganha o maior espaço para nomes longos */
+}
+
+.table th:nth-child(2) { 
+    width: 25% !important; /* UBS fica com tamanho intermediário ideal */
+}
+
+.table th:nth-child(3) { 
+    width: 15% !important; /* Data mantém o tamanho perfeito para o formato */
+}
+
+.table th:nth-child(4) { 
+    width: 15% !important; /* Quantidade (ML) fica compacta apenas para os números */
+    text-align: center !important;
+}
+
+/* Garante que o texto dos registros siga o mesmo alinhamento do cabeçalho */
+.table td:nth-child(4) {
+    text-align: center !important;
+}

@@ -164,42 +164,39 @@
                     </div>
 
 
-                    <div class="column">
+                    <div class="row" style="display: flex; gap: 20px; margin-bottom: 20px; width: 100%;">
 
+                    <!-- Endereço assume a maior parte da linha -->
+                    <div class="column" style="flex: 3.5;">
                         <label for="endereco">
                             Endereço:<span class="required">*</span>
                         </label>
-
                         <input
                             type="text"
                             name="endereco"
                             id="endereco"
                             placeholder="Digite o endereço"
                             required
+                            style="width: 100% !important; box-sizing: border-box;"
                         >
-
                     </div>
 
                 </div>
 
 
-                <!-- NÚMERO / BAIRRO / COMPLEMENTO -->
-                <div class="row">
-
-                    <div class="column">
-
+                <!-- Número fica bem pequenininho e compacto ao lado -->
+                    <div class="column" style="flex: 0.8;">
                         <label for="numero">
                             Número:<span class="required">*</span>
                         </label>
-
                         <input
                             type="text"
                             name="numero"
                             id="numero"
-                            placeholder="Digite o número"
+                            placeholder="Ex: 163"
                             required
+                            style="width: 100% !important; box-sizing: border-box;"
                         >
-
                     </div>
 
 
