@@ -1,17 +1,35 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Cadastrar Doação</title>
+
+    <!-- Tom Select -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css"
+        rel="stylesheet"
+    >
+
+    <style>
+        /* Campo de pesquisa de doadores */
+        #selectDoador + .ts-wrapper {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #selectDoador + .ts-wrapper .ts-control {
+            min-height: 38px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        #selectDoador + .ts-wrapper .ts-dropdown {
+            font-size: 14px;
+        }
+    </style>
 
 </head>
 
@@ -19,44 +37,15 @@
 
 <div class="container">
 
-    <h1 id="path2">
-        Cadastrar Doação
-    </h1>
+    <h1 id="path2">Cadastrar Doação</h1>
 
-
-    <form
-        action="index.php?rota=cadastrar-doacao"
-        method="POST"
-    >
+    <form action="index.php?rota=cadastrar-doacao" method="POST">
 
         <div class="contentform">
-
             <div class="form-container">
-
-
-                <!-- PESQUISAR DOADOR -->
-                <div class="row">
-
-                    <div class="column">
-
-                        <label for="pesquisaDoador">
-                            Pesquisar Doador
-                        </label>
-
-                        <input
-                            type="text"
-                            id="pesquisaDoador"
-                            placeholder="Digite o nome para buscar..."
-                        >
-
-                    </div>
-
-                </div>
-
 
                 <!-- DOADOR -->
                 <div class="row">
-
                     <div class="column">
 
                         <label for="selectDoador">
@@ -66,31 +55,21 @@
                         <select
                             name="doador_id"
                             id="selectDoador"
+                            placeholder="Digite o nome do doador..."
                             required
                         >
 
-                            <option
-                                value=""
-                                disabled
-                                selected
-                            >
-                                Selecione o doador
-                            </option>
-
+                            <option value="">Selecione o doador</option>
 
                             <?php foreach ($doadores as $doador): ?>
 
                                 <?php
-                                    $validado =
-                                        (int) ($doador['validado'] ?? 0);
+                                    $validado = (int) ($doador['validado'] ?? 0);
                                 ?>
-
 
                                 <?php if ($validado === 1): ?>
 
-                                    <option
-                                        value="<?= (int) $doador['id']; ?>"
-                                    >
+                                    <option value="<?= (int) $doador['id']; ?>">
                                         <?= htmlspecialchars(
                                             $doador['nome'],
                                             ENT_QUOTES,
@@ -101,16 +80,14 @@
                                 <?php else: ?>
 
                                     <option
-                                        value=""
+                                        value="pendente_<?= (int) $doador['id']; ?>"
                                         disabled
-                                        data-pendente="1"
                                     >
                                         <?= htmlspecialchars(
                                             $doador['nome'],
                                             ENT_QUOTES,
                                             'UTF-8'
                                         ); ?>
-
                                         — Pendente de validação
                                     </option>
 
@@ -121,9 +98,7 @@
                         </select>
 
                     </div>
-
                 </div>
-
 
                 <!-- AVISO DE VALIDAÇÃO -->
                 <div
@@ -142,36 +117,23 @@
                     aplicativo antes de realizar uma doação.
                 </div>
 
-
                 <!-- UBS -->
                 <div class="row">
-
                     <div class="column">
 
                         <label for="ubs_id">
                             UBS:<span class="required">*</span>
                         </label>
 
-                        <select
-                            name="ubs_id"
-                            id="ubs_id"
-                            required
-                        >
+                        <select name="ubs_id" id="ubs_id" required>
 
-                            <option
-                                value=""
-                                disabled
-                                selected
-                            >
+                            <option value="" disabled selected>
                                 Selecione a UBS
                             </option>
 
-
                             <?php foreach ($ubs as $unidade): ?>
 
-                                <option
-                                    value="<?= (int) $unidade['id']; ?>"
-                                >
+                                <option value="<?= (int) $unidade['id']; ?>">
                                     <?= htmlspecialchars(
                                         $unidade['nome'],
                                         ENT_QUOTES,
@@ -184,35 +146,29 @@
                         </select>
 
                     </div>
-
                 </div>
-
 
                 <!-- DATA DA DOAÇÃO -->
                 <div class="row">
-
                     <div class="column">
 
                         <label for="data_doacao">
                             Data da Doação:<span class="required">*</span>
                         </label>
 
-<input 
-    type="date" 
-    name="data_doacao" 
-    id="data_doacao"
-    value="<?= date('Y-m-d'); ?>"
-    required 
->
+                        <input
+                            type="date"
+                            name="data_doacao"
+                            id="data_doacao"
+                            value="<?= date('Y-m-d'); ?>"
+                            required
+                        >
 
                     </div>
-
                 </div>
-
 
                 <!-- QUANTIDADE -->
                 <div class="row">
-
                     <div class="column">
 
                         <label for="quantidade_ml">
@@ -220,7 +176,7 @@
                         </label>
 
                         <input
-                            type="text"
+                            type="number"
                             name="quantidade_ml"
                             id="quantidade_ml"
                             min="1"
@@ -228,18 +184,14 @@
                         >
 
                     </div>
-
                 </div>
-
 
                 <!-- BOTÕES -->
                 <div class="row">
-
                     <div class="column button-column">
 
                         <div class="botoes-edicao">
 
-                            <!-- CANCELAR -->
                             <a
                                 href="index.php?rota=doacoes"
                                 class="btn-cancelar-edicao"
@@ -247,8 +199,6 @@
                                 Cancelar
                             </a>
 
-
-                            <!-- CADASTRAR -->
                             <button
                                 type="submit"
                                 class="btn-salvar-edicao"
@@ -259,106 +209,104 @@
                         </div>
 
                     </div>
-
                 </div>
 
-
             </div>
-
         </div>
 
     </form>
 
 </div>
 
+<!-- Biblioteca Tom Select -->
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
 
 <script>
 
-const pesquisaDoador =
-    document.getElementById("pesquisaDoador");
+document.addEventListener("DOMContentLoaded", function () {
 
-const selectDoador =
-    document.getElementById("selectDoador");
+    const avisoValidacao = document.getElementById("avisoValidacao");
 
-const avisoValidacao =
-    document.getElementById("avisoValidacao");
+    const selectDoador = new TomSelect("#selectDoador", {
 
+        create: false,
 
-pesquisaDoador.addEventListener(
-    "keyup",
-    function () {
+        placeholder: "Digite o nome do doador...",
 
-        const filtro =
-            this.value
-                .toLowerCase()
-                .trim();
+        searchField: ["text"],
 
+        onChange: function () {
+            avisoValidacao.style.display = "none";
+        },
 
-        const options =
-            selectDoador.options;
+        render: {
+            option: function (data, escape) {
 
+                if (data.pendente) {
+                    return `
+                        <div style="color: #856404;">
+                            ${escape(data.text)}
+                        </div>
+                    `;
+                }
 
-        let encontrouPendente = false;
-
-
-        for (
-            let i = 0;
-            i < options.length;
-            i++
-        ) {
-
-            const option =
-                options[i];
-
-
-            // Ignora "Selecione o doador"
-            if (i === 0) {
-                continue;
+                return `<div>${escape(data.text)}</div>`;
             }
+        }
 
+    });
 
-            const texto =
-                option.text
-                    .toLowerCase();
+    // Doadores pendentes
+    const doadoresPendentes = [
 
+        <?php foreach ($doadores as $doador): ?>
 
-            const encontrou =
-                texto.includes(filtro);
+            <?php if ((int) ($doador['validado'] ?? 0) !== 1): ?>
 
+                {
+                    id: "pendente_<?= (int) $doador['id']; ?>",
 
-            option.style.display =
-                encontrou
-                    ? ""
-                    : "none";
+                    nome: <?= json_encode(
+                        $doador['nome'] . ' — Pendente de validação',
+                        JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
+                    ); ?>
+                },
 
+            <?php endif; ?>
 
-            // Verifica se o resultado encontrado
-            // está pendente de validação
-            if (
-                filtro !== "" &&
-                encontrou &&
-                option.dataset.pendente === "1"
-            ) {
+        <?php endforeach; ?>
 
-                encontrouPendente = true;
+    ];
 
-            }
+    // Adiciona os pendentes à pesquisa
+    doadoresPendentes.forEach(function (doador) {
+
+        selectDoador.addOption({
+            value: doador.id,
+            text: doador.nome,
+            pendente: true
+        });
+
+    });
+
+    // Impede a seleção de doadores pendentes
+    selectDoador.on("item_add", function (value) {
+
+        if (String(value).startsWith("pendente_")) {
+
+            selectDoador.removeItem(value, true);
+
+            avisoValidacao.style.display = "block";
 
         }
 
+    });
 
-        // Mostra aviso quando a pesquisa
-        // encontra um doador pendente
-        avisoValidacao.style.display =
-            encontrouPendente
-                ? "block"
-                : "none";
+    selectDoador.refreshOptions(false);
 
-    }
-);
+});
 
 </script>
 
 </body>
-
 </html>

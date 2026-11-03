@@ -9,7 +9,6 @@ class DoadorController extends Controller
         $this->doador = new Doador();
     }
 
-
     public function create(): void
     {
         $tiposSangue = $this->doador->listarTiposSangue();
@@ -18,7 +17,6 @@ class DoadorController extends Controller
             'tiposSangue' => $tiposSangue
         ]);
     }
-
 
     public function store(): void
     {
@@ -30,12 +28,12 @@ class DoadorController extends Controller
 
         $dados = [
             'nome' => trim($_POST['nome'] ?? ''),
-            'cpf' => trim($_POST['cpf'] ?? ''),
+            'cpf' => preg_replace('/\D/', '', $_POST['cpf'] ?? ''),
             'telefone' => trim($_POST['telefone'] ?? ''),
             'email' => trim($_POST['email'] ?? ''),
             'endereco' => trim($_POST['endereco'] ?? ''),
             'numero' => trim($_POST['numero'] ?? ''),
-            'cep' => trim($_POST['cep'] ?? ''),
+            'cep' => preg_replace('/\D/', '', $_POST['cep'] ?? ''),
             'complemento' => trim($_POST['complemento'] ?? ''),
             'bairro' => trim($_POST['bairro'] ?? ''),
             'nasc' => $_POST['nasc'] ?? '',
@@ -61,21 +59,25 @@ class DoadorController extends Controller
             die('Preencha todos os campos obrigatórios.');
         }
 
-        try {
+        if (!$this->cpfValido($dados['cpf'])) {
+            die('CPF inválido. Verifique os números informados.');
+        }
 
+        if (strlen($dados['cep']) !== 8) {
+            die('CEP inválido. Informe os 8 dígitos.');
+        }
+
+        try {
             $this->doador->cadastrar($dados);
 
             header('Location: index.php?rota=doadores');
             exit;
 
         } catch (PDOException $e) {
-
             http_response_code(500);
-
             echo 'Não foi possível cadastrar o doador.';
         }
     }
-
 
     public function index(): void
     {
@@ -86,11 +88,9 @@ class DoadorController extends Controller
         ]);
     }
 
-
     public function show(int $id): void
     {
         if ($id <= 0) {
-
             $this->view('doadores/show', [
                 'erro' => 'ID não fornecido.'
             ]);
@@ -101,7 +101,6 @@ class DoadorController extends Controller
         $doador = $this->doador->buscarPorId($id);
 
         if (!$doador) {
-
             $this->view('doadores/show', [
                 'erro' => 'Doador não encontrado.'
             ]);
@@ -109,16 +108,17 @@ class DoadorController extends Controller
             return;
         }
 
+        $tiposSangue = $this->doador->listarTiposSangue();
+
         $this->view('doadores/show', [
-            'doador' => $doador
+            'doador' => $doador,
+            'tiposSangue' => $tiposSangue
         ]);
     }
-
 
     public function edit(int $id): void
     {
         if ($id <= 0) {
-
             $this->view('doadores/edit', [
                 'erro' => 'ID não fornecido.'
             ]);
@@ -129,7 +129,6 @@ class DoadorController extends Controller
         $doador = $this->doador->buscarPorId($id);
 
         if (!$doador) {
-
             $this->view('doadores/edit', [
                 'erro' => 'Doador não encontrado.'
             ]);
@@ -145,7 +144,6 @@ class DoadorController extends Controller
         ]);
     }
 
-
     public function update(): void
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -154,31 +152,24 @@ class DoadorController extends Controller
             return;
         }
 
-        $id = isset($_POST['id'])
-            ? (int) $_POST['id']
-            : 0;
+        $id = (int) ($_POST['id'] ?? 0);
 
         if ($id <= 0) {
             die('ID inválido.');
         }
 
-
         /*
-         * IMPORTANTE:
-         * datedonation NÃO é recebido aqui.
-         *
-         * A data da última doação não pode ser
-         * modificada através da edição do doador.
-         *
-         * Ela deve ser atualizada somente quando
-         * uma doação for registrada.
+         * A data da última doação não é alterada
+         * durante a edição do cadastro.
          */
+
         $dados = [
             'nome' => trim($_POST['nome'] ?? ''),
+            'cpf' => preg_replace('/\D/', '', $_POST['cpf'] ?? ''),
             'sexo' => $_POST['sexo'] ?? '',
             'nasc' => $_POST['nasc'] ?? '',
             'email' => trim($_POST['email'] ?? ''),
-            'cep' => trim($_POST['cep'] ?? ''),
+            'cep' => preg_replace('/\D/', '', $_POST['cep'] ?? ''),
             'endereco' => trim($_POST['endereco'] ?? ''),
             'numero' => trim($_POST['numero'] ?? ''),
             'bairro' => trim($_POST['bairro'] ?? ''),
@@ -188,12 +179,9 @@ class DoadorController extends Controller
             'tipo_sangue_id' => (int) ($_POST['tipo_sangue_id'] ?? 0)
         ];
 
-
-        /*
-         * VALIDAÇÃO DOS CAMPOS
-         */
         if (
             $dados['nome'] === '' ||
+            $dados['cpf'] === '' ||
             $dados['sexo'] === '' ||
             $dados['nasc'] === '' ||
             $dados['email'] === '' ||
@@ -208,28 +196,76 @@ class DoadorController extends Controller
             die('Preencha todos os campos obrigatórios.');
         }
 
+        if (!$this->cpfValido($dados['cpf'])) {
+            die('CPF inválido. Verifique os números informados.');
+        }
+
+        if (strlen($dados['cep']) !== 8) {
+            die('CEP inválido. Informe os 8 dígitos.');
+        }
 
         try {
+            $this->doador->atualizar($id, $dados);
 
-            $this->doador->atualizar(
-                $id,
-                $dados
-            );
-
-            header(
-                'Location: index.php?rota=doador&id=' . $id
-            );
+            echo "<script>
+                alert('Alterações salvas com sucesso!');
+                window.location.href = 'index.php?rota=doador&id={$id}';
+            </script>";
 
             exit;
 
         } catch (PDOException $e) {
-
             http_response_code(500);
-
             echo 'Não foi possível atualizar o doador.';
         }
     }
 
+    /**
+     * Valida o CPF utilizando os dígitos verificadores.
+     */
+    private function cpfValido(string $cpf): bool
+    {
+        $cpf = preg_replace('/\D/', '', $cpf);
+
+        if (strlen($cpf) !== 11) {
+            return false;
+        }
+
+        // Rejeita CPFs com todos os números iguais.
+        if (preg_match('/^(\d)\1{10}$/', $cpf)) {
+            return false;
+        }
+
+        // Calcula o primeiro dígito verificador.
+        $soma = 0;
+
+        for ($i = 0; $i < 9; $i++) {
+            $soma += (int) $cpf[$i] * (10 - $i);
+        }
+
+        $resto = ($soma * 10) % 11;
+        $primeiroDigito = ($resto === 10) ? 0 : $resto;
+
+        if ($primeiroDigito !== (int) $cpf[9]) {
+            return false;
+        }
+
+        // Calcula o segundo dígito verificador.
+        $soma = 0;
+
+        for ($i = 0; $i < 10; $i++) {
+            $soma += (int) $cpf[$i] * (11 - $i);
+        }
+
+        $resto = ($soma * 10) % 11;
+        $segundoDigito = ($resto === 10) ? 0 : $resto;
+
+        if ($segundoDigito !== (int) $cpf[10]) {
+            return false;
+        }
+
+        return true;
+    }
 
     public function validar(): void
     {
@@ -239,9 +275,7 @@ class DoadorController extends Controller
             return;
         }
 
-        $id = isset($_POST['id'])
-            ? (int) $_POST['id']
-            : 0;
+        $id = (int) ($_POST['id'] ?? 0);
 
         if ($id <= 0) {
             die('ID inválido.');
@@ -254,23 +288,16 @@ class DoadorController extends Controller
         }
 
         try {
-
             $this->doador->validar($id);
 
-            header(
-                'Location: index.php?rota=doadores&validado=1'
-            );
-
+            header('Location: index.php?rota=doadores&validado=1');
             exit;
 
         } catch (PDOException $e) {
-
             http_response_code(500);
-
             echo 'Não foi possível validar o doador.';
         }
     }
-
 
     public function delete(int $id): void
     {
@@ -285,17 +312,12 @@ class DoadorController extends Controller
         }
 
         try {
-
             $this->doador->excluir($id);
 
-            header(
-                'Location: index.php?rota=doadores'
-            );
-
+            header('Location: index.php?rota=doadores');
             exit;
 
         } catch (PDOException $e) {
-
             http_response_code(409);
 
             echo 'Não foi possível excluir este doador. Existem registros relacionados a ele.';

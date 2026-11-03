@@ -154,17 +154,8 @@ if (!isset($_SESSION['usuario'])) {
                 </h2>
 
                 <li>
-                    <a href="index.php?rota=novo">
-                        Cadastrar Doadores
-                    </a>
-                </li>
-
-                <hr class="espacamentomenus">
-
-
-                <li>
                     <a href="index.php?rota=doadores">
-                        Listar Doadores
+                        Doadores
                     </a>
                 </li>
 
@@ -251,11 +242,11 @@ if (!isset($_SESSION['usuario'])) {
 
             <!-- DOADORES -->
 
-            <div class="nav-item dropdown">
+            <div class="nav-item">
 
                 <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
+                    class="nav-link"
+                    href="index.php?rota=doadores"
                 >
 
                     <ion-icon
@@ -263,37 +254,9 @@ if (!isset($_SESSION['usuario'])) {
                         name="list-circle-outline"
                     ></ion-icon>
 
-                    Doador
+                    Doadores
 
                 </a>
-
-
-                <ul class="dropdown-menu">
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=novo"
-                        >
-                            Cadastrar Doadores
-                        </a>
-
-                    </li>
-
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=doadores"
-                        >
-                            Listar Doadores
-                        </a>
-
-                    </li>
-
-                </ul>
 
             </div>
 
@@ -565,40 +528,6 @@ if (!isset($_SESSION['usuario'])) {
 
             </p>
 
-
-            <div class="footer-address">
-
-                <p>
-                    <strong>Navegação:</strong>
-                </p>
-
-
-                <a
-                    href="index.php?rota=dashboard"
-                    class="footer-link"
-                >
-                    Dashboard
-                </a>
-
-
-                <a
-                    href="index.php?rota=novo"
-                    class="footer-link"
-                >
-                    Cadastrar Doador
-                </a>
-
-
-                <a
-                    href="index.php?rota=doadores"
-                    class="footer-link"
-                >
-                    Listar Doadores
-                </a>
-
-            </div>
-
-
             <div class="footer-address">
 
                 <p>
@@ -728,3 +657,4 @@ if (
 </body>
 
 </html>
+```

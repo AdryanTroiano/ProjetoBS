@@ -6,9 +6,47 @@ if (!isset($doadores)) {
 
 ?>
 
-<h1 id="path2" style="text-align: center;">
-    Listar Doadores
-</h1>
+<div style="
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+">
+
+    <h1 id="path2">
+        Lista de Doadores
+    </h1>
+
+    <!-- BOTÃO CADASTRAR -->
+    <a
+        href="index.php?rota=novo"
+        title="Cadastrar novo doador"
+        aria-label="Cadastrar novo doador"
+        style="
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            transition: 0.2s;
+        "
+        onmouseover="this.style.backgroundColor='#218838'"
+        onmouseout="this.style.backgroundColor='#28a745'"
+    >
+        <i class="fas fa-plus"></i>
+    </a>
+
+</div>
 
 <br>
 
@@ -360,3 +398,4 @@ function clearSearch() {
     </table>
 
 </div>
+```

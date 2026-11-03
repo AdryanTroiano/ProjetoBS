@@ -42,12 +42,12 @@ class Doador extends Model
 
         return $stmt->execute([
             $dados['nome'],
-            $dados['cpf'],
+            preg_replace('/\D/', '', $dados['cpf']),
             $dados['telefone'],
             $dados['email'],
             $dados['endereco'],
             $dados['numero'],
-            $dados['cep'],
+            preg_replace('/\D/', '', $dados['cep']),
             $dados['complemento'],
             $dados['bairro'],
             $dados['nasc'],
@@ -96,6 +96,7 @@ class Doador extends Model
         $sql = "
             UPDATE doadores SET
                 nome = ?,
+                cpf = ?,
                 sexo = ?,
                 nasc = ?,
                 email = ?,
@@ -106,8 +107,7 @@ class Doador extends Model
                 complemento = ?,
                 telefone = ?,
                 peso = ?,
-                tipo_sangue_id = ?,
-                datedonation = ?
+                tipo_sangue_id = ?
             WHERE id = ?
         ";
 
@@ -115,10 +115,11 @@ class Doador extends Model
 
         return $stmt->execute([
             $dados['nome'],
+            preg_replace('/\D/', '', $dados['cpf']),
             $dados['sexo'],
             $dados['nasc'],
             $dados['email'],
-            $dados['cep'],
+            preg_replace('/\D/', '', $dados['cep']),
             $dados['endereco'],
             $dados['numero'],
             $dados['bairro'],
@@ -126,7 +127,6 @@ class Doador extends Model
             $dados['telefone'],
             $dados['peso'],
             $dados['tipo_sangue_id'],
-            $dados['datedonation'],
             $id
         ]);
     }
