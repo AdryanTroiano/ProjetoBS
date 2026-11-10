@@ -2,10 +2,10 @@
 
 class Database
 {
-    private const HOST = 'localhost';
-    private const DB_NAME = 'BSTQ';
+    private const HOST = 'dbmaria';
+    private const DB_NAME = 'bstq';
     private const USER = 'root';
-    private const PASSWORD = '';
+    private const PASSWORD = 'teste@123';
 
     private static ?PDO $connection = null;
 
@@ -30,7 +30,7 @@ class Database
                 );
 
             } catch (PDOException $e) {
-                die('Falha na conexão com o banco de dados: ' . $e->getMessage());
+                die('** Falha na conexão com o banco de dados: ' . $e->getMessage());
             }
         }
 
