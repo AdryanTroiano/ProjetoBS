@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-require_once __DIR__ . '/../../web/app/core/autoload.php';
+require_once __DIR__ . '/../../api/core/autoload.php';
 
 http_response_code(200);
 

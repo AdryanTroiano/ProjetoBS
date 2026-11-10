@@ -69,7 +69,22 @@ export default function TabTwoScreen() {
 
       const response = await api.get("/doadores");
 
-      setDoadores(response.data);
+      const dados = response.data;
+
+      console.log("RESPOSTA COMPLETA:", dados);
+
+      if (Array.isArray(dados)) {
+        setDoadores(dados);
+      } else if (Array.isArray(dados?.doadores)) {
+        setDoadores(dados.doadores);
+      } else if (Array.isArray(dados?.dados)) {
+        setDoadores(dados.dados);
+      } else if (Array.isArray(dados?.data)) {
+        setDoadores(dados.data);
+      } else {
+        console.log("Formato inesperado da API:", dados);
+        setDoadores([]);
+      }
 
     } catch (error) {
 
