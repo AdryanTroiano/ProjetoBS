@@ -11,8 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-require_once __DIR__ . '/../../../back/api/core/autoload.php';
-require_once __DIR__ . '/../../../back/api/config/database.php';
+require_once __DIR__ . '/../core/autoload.php';
+require_once __DIR__ . '/../config/database.php';
 
 
 // =========================

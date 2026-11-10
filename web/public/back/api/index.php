@@ -13,6 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require_once __DIR__ . '/../../api/core/autoload.php';
 
+
+
 http_response_code(200);
 
 echo json_encode([

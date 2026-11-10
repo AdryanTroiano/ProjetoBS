@@ -6,7 +6,10 @@ spl_autoload_register(function ($class) {
         __DIR__ . '/../controllers/',
         __DIR__ . '/../models/',
         __DIR__ . '/../middleware/',
-        __DIR__ . '/'
+        __DIR__ . '/',
+        __DIR__ . '/../../../../app/models/',
+        __DIR__ . '/../../../../app/controllers/',
+        __DIR__ . '/../../../../app/middleware/'
     ];
 
     foreach ($pastas as $pasta) {
