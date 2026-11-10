@@ -1011,3 +1011,71 @@
         width: 120px;
     }
 }
+
+/* =========================================================
+   BARRA DE PESQUISA - FUNCIONÁRIOS
+   ========================================================= */
+
+.usuarios-pesquisa {
+    width: 100%;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.usuarios-pesquisa label {
+    width: 100%;
+    display: block;
+
+    margin-bottom: 6px;
+
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    transform: translateX(-1.8%);
+}
+
+.usuarios-pesquisa .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.usuarios-pesquisa #searchInput {
+    width: 300px;
+    max-width: 100%;
+}
+
+.usuarios-pesquisa #nenhumResultadoPesquisa td {
+    text-align: center;
+    color: #dc3545;
+    font-weight: 600;
+    padding: 12px;
+}
+
+@media (max-width: 500px) {
+    .usuarios-pesquisa .search-container {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .usuarios-pesquisa #searchInput {
+        width: 100%;
+    }
+
+    .usuarios-pesquisa label {
+        width: 100%;
+    }
+}
+
+.usuarios-tabela-container {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.usuarios-tabela {
+    margin-top: 0 !important;
+}

@@ -2112,3 +2112,98 @@ input[placeholder="Ex: UBS Central"] {
 .table td:nth-child(4) {
     text-align: center !important;
 }
+
+
+/* ==================================================
+   BARRA DE PESQUISA - LISTAGEM DE DOADORES
+   ================================================== */
+
+.search-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex-wrap: wrap;
+}
+
+.search-container #searchInput {
+    width: 300px !important;
+    max-width: 300px !important;
+    height: 40px !important;
+    margin: 0 !important;
+}
+
+.search-container .btn-pesquisar {
+    height: 40px !important;
+    min-width: 77px !important;
+    width: 77px !important;
+    padding: 0 8px !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+
+    background-color: #106cfc !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 5px !important;
+
+    font-family: 'Segoe UI', sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+
+    cursor: pointer !important;
+}
+
+.search-container .btn-pesquisar:hover {
+    background-color: #094cb8 !important;
+}
+
+.search-container .btnlimp {
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: inline-flex;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background-color: #dc3545 !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: 5px !important;
+
+    cursor: pointer !important;
+}
+
+.search-container .btnlimp:hover {
+    background-color: #bb2d3b !important;
+}
+
+/* Mensagem de pesquisa sem resultados */
+#nenhumResultadoPesquisa td {
+    background-color: #ffe5e5 !important;
+    color: #dc3545 !important;
+    text-align: center !important;
+    font-weight: 600 !important;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+
+    .search-container {
+        width: 95% !important;
+        margin: 0 auto !important;
+    }
+
+    .search-container #searchInput {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+}

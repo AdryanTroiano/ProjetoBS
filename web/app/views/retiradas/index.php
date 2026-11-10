@@ -1,3 +1,4 @@
+
 <div style="
     width: 90%;
     max-width: 1000px;
@@ -41,26 +42,51 @@
 
 <br>
 
-<div
-    class="search-container"
-    style="display: flex; justify-content: center;"
->
+<div style="display: flex; flex-direction: column; align-items: center;">
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Buscar por UBS"
-        class="form-control"
-        onkeyup="filterTable()"
-        style="width: 300px;"
+    <label for="searchInput" style="margin-bottom: 6px;">
+        Pesquise pelo nome da UBS ou pela data da retirada ex: (11/26 ou 10/11/2026)
+    </label>
+
+    <div
+        class="search-container"
+        style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        "
     >
 
-    <button
-        onclick="clearSearch()"
-        class="btnlimp"
-    >
-        Limpar
-    </button>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar por UBS ou data"
+            class="form-control"
+            style="width: 300px;"
+        >
+
+        <button
+            type="button"
+            onclick="filterTable()"
+            class="btn-pesquisar"
+        >
+            <i class="fas fa-search"></i>
+        </button>
+
+        <button
+            type="button"
+            id="btnLimparPesquisa"
+            onclick="clearSearch()"
+            class="btnlimp"
+            title="Limpar pesquisa"
+            aria-label="Limpar pesquisa"
+            style="display: none;"
+        >
+            <i class="fas fa-trash-alt"></i>
+        </button>
+
+    </div>
 
 </div>
 
@@ -68,46 +94,105 @@
 
 function filterTable() {
 
-    const input =
-        document.getElementById('searchInput');
+    const input = document.getElementById('searchInput');
+    const filter = input.value.trim().toLowerCase();
 
-    const filter =
-        input.value.toLowerCase();
+    const table = document.getElementById('dataTable');
+    const tbody = table.querySelector('tbody');
 
-    const table =
-        document.getElementById('dataTable');
+    const linhas = tbody.querySelectorAll('tr[data-retirada]');
 
-    const tr =
-        table.getElementsByTagName('tr');
+    let encontrados = 0;
 
-    for (let i = 1; i < tr.length; i++) {
+    const mensagemAnterior = document.getElementById('nenhumResultadoPesquisa');
 
-        const td =
-            tr[i].getElementsByTagName('td')[2];
-
-        if (td) {
-
-            const txtValue =
-                td.textContent || td.innerText;
-
-            tr[i].style.display =
-                txtValue
-                    .toLowerCase()
-                    .indexOf(filter) > -1
-                    ? ""
-                    : "none";
-        }
+    if (mensagemAnterior) {
+        mensagemAnterior.remove();
     }
+
+    linhas.forEach(linha => {
+
+        // Coluna UBS: índice 2
+        const ubs = linha.cells[2].textContent.toLowerCase().trim();
+
+        // Coluna Data: índice 3
+        const data = linha.cells[3].textContent.toLowerCase().trim();
+
+        const corresponde =
+            ubs.includes(filter) ||
+            data.includes(filter);
+
+        if (corresponde) {
+
+            linha.style.display = '';
+            encontrados++;
+
+        } else {
+
+            linha.style.display = 'none';
+
+        }
+
+    });
+
+    if (linhas.length > 0 && encontrados === 0) {
+
+        const mensagem = document.createElement('tr');
+
+        mensagem.id = 'nenhumResultadoPesquisa';
+
+        mensagem.innerHTML = `
+            <td colspan="5" class="text-center alert alert-danger">
+                Nenhuma retirada encontrada!
+            </td>
+        `;
+
+        tbody.appendChild(mensagem);
+
+    }
+
 }
 
 function clearSearch() {
 
-    document.getElementById(
-        'searchInput'
-    ).value = '';
+    const input = document.getElementById('searchInput');
 
-    filterTable();
+    input.value = '';
+
+    document.getElementById('btnLimparPesquisa').style.display = 'none';
+
+    const table = document.getElementById('dataTable');
+
+    table.querySelectorAll('tbody tr[data-retirada]').forEach(linha => {
+        linha.style.display = '';
+    });
+
+    const mensagem = document.getElementById('nenhumResultadoPesquisa');
+
+    if (mensagem) {
+        mensagem.remove();
+    }
+
 }
+
+document.getElementById('searchInput').addEventListener('keydown', function(event) {
+
+    if (event.key === 'Enter') {
+
+        event.preventDefault();
+
+        filterTable();
+
+    }
+
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+
+    document.getElementById('btnLimparPesquisa').style.display =
+        this.value.length > 0 ? 'inline-flex' : 'none';
+
+});
 
 </script>
 
@@ -155,7 +240,7 @@ function clearSearch() {
 
             <?php foreach ($retiradas as $retirada): ?>
 
-                <tr>
+                <tr data-retirada>
 
                     <td style="text-align:center;">
 
