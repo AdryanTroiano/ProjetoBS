@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03/11/2026 às 14:53
+-- Tempo de geração: 10/11/2026 às 15:22
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -35,6 +35,17 @@ CREATE TABLE `doacoes` (
   `quantidade_ml` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `doacoes`
+--
+
+INSERT INTO `doacoes` (`id`, `doador_id`, `ubs_id`, `data_doacao`, `quantidade_ml`) VALUES
+(10, 26, 10, '2026-11-10', 500),
+(11, 34, 11, '2026-11-10', 500),
+(12, 27, 9, '2026-11-10', 500),
+(13, 32, 13, '2026-11-10', 500),
+(14, 33, 12, '2026-11-10', 500);
+
 -- --------------------------------------------------------
 
 --
@@ -65,15 +76,15 @@ CREATE TABLE `doadores` (
 --
 
 INSERT INTO `doadores` (`id`, `nome`, `sexo`, `cpf`, `telefone`, `email`, `endereco`, `numero`, `cep`, `complemento`, `bairro`, `nasc`, `datedonation`, `peso`, `tipo_sangue_id`, `validado`) VALUES
-(26, 'Adryan', 'M', '51987286839', '16993089219', 'adryantroian@gmail.com', 'Rua Doutor Joaquim Machado Faro Rolemberg', 37, '15905020', '', 'Jardim Bela Vista', '2005-07-26', '0000-00-00', 102, 8, 1),
-(27, 'Carlos Henrique Souza', 'M', '12345678901', '16999991001', 'carlos.teste@email.com', 'Rua das Flores', 120, '15900000', 'Casa', 'Centro', '1990-05-12', '0000-00-00', 76, 8, 0),
+(26, 'Adryan', 'M', '51987286839', '16993089219', 'adryantroian@gmail.com', 'Rua Doutor Joaquim Machado Faro Rolemberg', 37, '15905020', '', 'Jardim Bela Vista', '2005-07-26', '2026-11-10', 102, 8, 1),
+(27, 'Carlos Henrique Souza', 'M', '12345678901', '16999991001', 'carlos.teste@email.com', 'Rua das Flores', 120, '15900000', 'Casa', 'Centro', '1990-05-12', '2026-11-10', 76, 8, 1),
 (28, 'Mariana Oliveira Costa', 'F', '23456789012', '16999991002', 'mariana.teste@email.com', 'Rua São Paulo', 245, '15900001', '', 'Jardim América', '1995-08-21', '0000-00-00', 62, 1, 0),
 (29, 'Rafael Mendes Lima', 'M', '34567890123', '16999991003', 'rafael.teste@email.com', 'Avenida Brasil', 80, '15900002', 'Apartamento 12', 'Centro', '1988-02-15', '0000-00-00', 82, 2, 0),
 (30, 'Juliana Ferreira Alves', 'F', '45678901234', '16999991004', 'juliana.teste@email.com', 'Rua Paraná', 310, '15900003', '', 'Vila Nova', '1998-11-03', '0000-00-00', 59, 4, 0),
 (31, 'Lucas Rodrigues Martins', 'M', '56789012345', '16999991005', 'lucas.teste@email.com', 'Rua Minas Gerais', 55, '15900004', 'Fundos', 'Jardim Paulista', '1992-04-27', '0000-00-00', 78, 5, 0),
-(32, 'Fernanda Ribeiro Santos', 'F', '67890123456', '16999991006', 'fernanda.teste@email.com', 'Rua Bahia', 190, '15900005', '', 'Centro', '1996-07-19', '0000-00-00', 65, 3, 0),
-(33, 'Gabriel Almeida Rocha', 'M', '78901234567', '16999991007', 'gabriel.teste@email.com', 'Avenida Central', 420, '15900006', 'Casa 2', 'Vila Industrial', '1985-09-10', '0000-00-00', 90, 8, 0),
-(34, 'Camila Barbosa Nunes', 'F', '89012345678', '16999991008', 'camila.teste@email.com', 'Rua Goiás', 75, '15900007', '', 'Jardim Europa', '2000-01-25', '0000-00-00', 55, 6, 0),
+(32, 'Fernanda Ribeiro Santos', 'F', '67890123456', '16999991006', 'fernanda.teste@email.com', 'Rua Bahia', 190, '15900005', '', 'Centro', '1996-07-19', '2026-11-10', 65, 3, 1),
+(33, 'Gabriel Almeida Rocha', 'M', '78901234567', '16999991007', 'gabriel.teste@email.com', 'Avenida Central', 420, '15900006', 'Casa 2', 'Vila Industrial', '1985-09-10', '2026-11-10', 90, 8, 1),
+(34, 'Camila Barbosa Nunes', 'F', '89012345678', '16999991008', 'camila.teste@email.com', 'Rua Goiás', 75, '15900007', '', 'Jardim Europa', '2000-01-25', '2026-11-10', 55, 6, 1),
 (35, 'Pedro Augusto Carvalho', 'M', '90123456789', '16999991009', 'pedro.teste@email.com', 'Rua Rio de Janeiro', 150, '15900008', 'Apartamento 3', 'Centro', '1993-12-08', '0000-00-00', 85, 8, 0);
 
 -- --------------------------------------------------------
@@ -87,6 +98,15 @@ CREATE TABLE `estoque_sangue` (
   `quantidade` int(11) NOT NULL DEFAULT 0,
   `tipo_sangue_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `estoque_sangue`
+--
+
+INSERT INTO `estoque_sangue` (`id`, `quantidade`, `tipo_sangue_id`) VALUES
+(9, 1000, 8),
+(10, 500, 6),
+(11, 500, 3);
 
 -- --------------------------------------------------------
 
@@ -104,6 +124,18 @@ CREATE TABLE `logs_estoque` (
   `tipo_sangue_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `logs_estoque`
+--
+
+INSERT INTO `logs_estoque` (`id`, `acao`, `quantidade`, `data_hora`, `ip`, `usuario_id`, `tipo_sangue_id`) VALUES
+(10, 'DOACAO', 500, '2026-11-10 09:29:55', '::1', 7, 8),
+(11, 'DOACAO', 500, '2026-11-10 09:30:08', '::1', 7, 6),
+(12, 'DOACAO', 500, '2026-11-10 09:30:24', '::1', 7, 8),
+(13, 'DOACAO', 500, '2026-11-10 09:30:38', '::1', 7, 3),
+(14, 'DOACAO', 500, '2026-11-10 09:30:54', '::1', 7, 8),
+(15, 'RETIRADA', 500, '2026-11-10 10:54:55', '::1', 7, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -119,6 +151,13 @@ CREATE TABLE `retiradas` (
   `tipo_sangue_id` int(11) DEFAULT NULL,
   `ubs_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `retiradas`
+--
+
+INSERT INTO `retiradas` (`id`, `quantidade_ml`, `data_retirada`, `observacao`, `created_at`, `tipo_sangue_id`, `ubs_id`) VALUES
+(6, 500, '2026-11-10', '', '2026-11-10 13:54:55', 8, 10);
 
 -- --------------------------------------------------------
 
@@ -263,7 +302,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `doacoes`
 --
 ALTER TABLE `doacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `doadores`
@@ -275,19 +314,19 @@ ALTER TABLE `doadores`
 -- AUTO_INCREMENT de tabela `estoque_sangue`
 --
 ALTER TABLE `estoque_sangue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `logs_estoque`
 --
 ALTER TABLE `logs_estoque`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `retiradas`
 --
 ALTER TABLE `retiradas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `tipos_sangue`
