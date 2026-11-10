@@ -1,3 +1,4 @@
+
 <?php
 
 if (!isset($doadores)) {
@@ -50,27 +51,50 @@ if (!isset($doadores)) {
 
 <br>
 
-<div
-    class="search-container"
-    style="display: flex; justify-content: center;"
->
+<div style="
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+">
 
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Buscar por nome"
-        class="form-control"
-        onkeyup="filterTable()"
-        style="width: 300px;"
+    <label for="searchInput" style="margin-bottom: 6px;">
+        Digite o nome do doador que deseja localizar:
+    </label>
+
+    <div
+        class="search-container"
+        style="display: flex; justify-content: center; align-items: center; gap: 5px;"
     >
 
-    <button
-        type="button"
-        onclick="clearSearch()"
-        class="btnlimp"
-    >
-        Limpar
-    </button>
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar por nome"
+            class="form-control"
+            style="width: 300px;"
+        >
+
+        <button
+            type="button"
+            onclick="filterTable()"
+            class="btn-pesquisar"
+        >
+            <i class="fas fa-search"></i>
+        </button>
+
+        <button
+            type="button"
+            id="btnLimparPesquisa"
+            onclick="clearSearch()"
+            class="btnlimp"
+            title="Limpar pesquisa"
+            aria-label="Limpar pesquisa"
+            style="display: none;"
+        >
+            <i class="fas fa-trash-alt"></i>
+        </button>
+
+    </div>
 
 </div>
 
@@ -83,44 +107,147 @@ function filterTable() {
         document.getElementById('searchInput');
 
     const filter =
-        input.value.toLowerCase();
+        input.value.trim().toLowerCase();
 
     const table =
         document.getElementById('dataTable');
 
-    const tr =
-        table.getElementsByTagName('tr');
+    const tbody =
+        table.querySelector('tbody');
 
+    const linhas =
+        tbody.querySelectorAll('tr[data-doador]');
 
-    for (let i = 1; i < tr.length; i++) {
+    let encontrados = 0;
+
+    // Remove mensagem anterior
+    const mensagemAnterior =
+        document.getElementById('nenhumResultadoPesquisa');
+
+    if (mensagemAnterior) {
+        mensagemAnterior.remove();
+    }
+
+    // Realiza a pesquisa
+    linhas.forEach(linha => {
 
         const td =
-            tr[i].getElementsByTagName('td')[0];
+            linha.getElementsByTagName('td')[0];
 
-        if (td) {
+        const txtValue =
+            td.textContent || td.innerText;
 
-            const txtValue =
-                td.textContent || td.innerText;
+        if (
+            txtValue.toLowerCase().includes(filter)
+        ) {
 
-            tr[i].style.display =
-                txtValue
-                    .toLowerCase()
-                    .indexOf(filter) > -1
-                    ? ""
-                    : "none";
+            linha.style.display = '';
+            encontrados++;
+
+        } else {
+
+            linha.style.display = 'none';
+
         }
+
+    });
+
+    // Exibe mensagem caso não encontre resultados
+    // Somente quando existem doadores cadastrados
+    if (linhas.length > 0 && encontrados === 0) {
+
+        const mensagem =
+            document.createElement('tr');
+
+        mensagem.id =
+            'nenhumResultadoPesquisa';
+
+        mensagem.innerHTML = `
+            <td
+                colspan="3"
+                class="text-center alert alert-danger"
+                style="text-align: center;"
+            >
+                Nenhum doador encontrado!
+            </td>
+        `;
+
+        tbody.appendChild(mensagem);
+
     }
+
 }
 
 
+// LIMPAR PESQUISA
 function clearSearch() {
 
-    document.getElementById(
-        'searchInput'
-    ).value = '';
+    const input =
+        document.getElementById('searchInput');
 
-    filterTable();
+    input.value = '';
+
+    // Esconde a lixeira
+    document.getElementById(
+        'btnLimparPesquisa'
+    ).style.display = 'none';
+
+    const table =
+        document.getElementById('dataTable');
+
+    // Mostra todos os doadores
+    table.querySelectorAll(
+        'tbody tr[data-doador]'
+    ).forEach(linha => {
+
+        linha.style.display = '';
+
+    });
+
+    // Remove mensagem de pesquisa
+    const mensagem =
+        document.getElementById(
+            'nenhumResultadoPesquisa'
+        );
+
+    if (mensagem) {
+        mensagem.remove();
+    }
+
 }
+
+
+// PESQUISAR AO PRESSIONAR ENTER
+document.getElementById('searchInput').addEventListener(
+    'keydown',
+    function(event) {
+
+        if (event.key === 'Enter') {
+
+            event.preventDefault();
+
+            filterTable();
+
+        }
+
+    }
+);
+
+
+// MOSTRAR LIXEIRA SOMENTE QUANDO DIGITAR
+document.getElementById('searchInput').addEventListener(
+    'input',
+    function() {
+
+        document.getElementById(
+            'btnLimparPesquisa'
+        ).style.display =
+            this.value.length > 0
+                ? 'inline-flex'
+                : 'none';
+
+    }
+);
 
 </script>
 
@@ -250,7 +377,7 @@ function clearSearch() {
 
             ?>
 
-                    <tr>
+                    <tr data-doador>
 
                         <!-- NOME -->
                         <td

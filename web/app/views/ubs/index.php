@@ -1,3 +1,4 @@
+
 <div style="
     width: 90%;
     max-width: 1000px;
@@ -41,10 +42,159 @@
 
 <br>
 
+<div style="display: flex; flex-direction: column; align-items: center;">
+
+    <label for="searchInput" style="margin-bottom: 6px;">
+        Digite o nome da UBS que deseja localizar:
+    </label>
+
+    <div
+        class="search-container"
+        style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        "
+    >
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Buscar por UBS"
+            class="form-control"
+            style="width: 300px;"
+        >
+
+        <button
+            type="button"
+            onclick="filterTable()"
+            class="btn-pesquisar"
+        >
+            <i class="fas fa-search"></i>
+        </button>
+
+        <button
+            type="button"
+            id="btnLimparPesquisa"
+            onclick="clearSearch()"
+            class="btnlimp"
+            title="Limpar pesquisa"
+            aria-label="Limpar pesquisa"
+            style="display: none;"
+        >
+            <i class="fas fa-trash-alt"></i>
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+function filterTable() {
+
+    const input = document.getElementById('searchInput');
+    const filter = input.value.trim().toLowerCase();
+
+    const table = document.getElementById('dataTable');
+    const tbody = table.querySelector('tbody');
+
+    const linhas = tbody.querySelectorAll('tr[data-ubs]');
+
+    let encontrados = 0;
+
+    const mensagemAnterior = document.getElementById('nenhumResultadoPesquisa');
+
+    if (mensagemAnterior) {
+        mensagemAnterior.remove();
+    }
+
+    linhas.forEach(linha => {
+
+        const nome = linha.cells[0].textContent.toLowerCase().trim();
+
+        if (nome.includes(filter)) {
+
+            linha.style.display = '';
+            encontrados++;
+
+        } else {
+
+            linha.style.display = 'none';
+
+        }
+
+    });
+
+    if (linhas.length > 0 && encontrados === 0) {
+
+        const mensagem = document.createElement('tr');
+
+        mensagem.id = 'nenhumResultadoPesquisa';
+
+        mensagem.innerHTML = `
+            <td colspan="2" class="text-center alert alert-danger">
+                Nenhuma UBS encontrada!
+            </td>
+        `;
+
+        tbody.appendChild(mensagem);
+
+    }
+
+}
+
+function clearSearch() {
+
+    const input = document.getElementById('searchInput');
+
+    input.value = '';
+
+    document.getElementById('btnLimparPesquisa').style.display = 'none';
+
+    const table = document.getElementById('dataTable');
+
+    table.querySelectorAll('tbody tr[data-ubs]').forEach(linha => {
+        linha.style.display = '';
+    });
+
+    const mensagem = document.getElementById('nenhumResultadoPesquisa');
+
+    if (mensagem) {
+        mensagem.remove();
+    }
+
+}
+
+document.getElementById('searchInput').addEventListener('keydown', function(event) {
+
+    if (event.key === 'Enter') {
+
+        event.preventDefault();
+
+        filterTable();
+
+    }
+
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+
+    document.getElementById('btnLimparPesquisa').style.display =
+        this.value.length > 0 ? 'inline-flex' : 'none';
+
+});
+
+</script>
+
+<br>
+
 <div style="display:flex; justify-content:center;">
 
     <table
         class="table"
+        id="dataTable"
         style="width:80%; max-width:800px;"
     >
 
@@ -75,7 +225,7 @@
 
                 <?php foreach ($ubs as $unidade): ?>
 
-                    <tr>
+                    <tr data-ubs>
 
                         <td style="text-align:center;">
 
@@ -86,7 +236,6 @@
                             ); ?>
 
                         </td>
-
 
                         <td style="text-align:center;">
 
@@ -101,7 +250,6 @@
                                 >
                                     <i class="fas fa-eye"></i>
                                 </a>
-
 
                                 <!-- EXCLUIR -->
                                 <button
