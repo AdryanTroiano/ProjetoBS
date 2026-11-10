@@ -254,7 +254,6 @@
             <th>Tipo Sanguíneo</th>
             <th>Quantidade</th>
             <th>Data/Hora</th>
-            <th>IP</th>
         </tr>
 
     </thead>
@@ -297,12 +296,6 @@
                             strtotime(
                                 $log['data_hora']
                             )
-                        ); ?>
-                    </td>
-
-                    <td>
-                        <?= htmlspecialchars(
-                            $log['ip']
                         ); ?>
                     </td>
 
