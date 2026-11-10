@@ -398,4 +398,3 @@ function clearSearch() {
     </table>
 
 </div>
-```
