@@ -1,4 +1,43 @@
-<h1 id="path2" style="text-align: center;">Listar Retiradas</h1>
+<div style="
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+">
+
+    <h1 id="path2">
+        Lista de retiradas
+    </h1>
+
+    <a
+        href="index.php?rota=nova-retirada"
+        title="Cadastrar nova retirada"
+        aria-label="Cadastrar nova retirada"
+        style="
+            position: absolute;
+            right: 6.5rem;
+            top: 0;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            transition: 0.2s;
+        "
+        onmouseover="this.style.backgroundColor='#218838'"
+        onmouseout="this.style.backgroundColor='#28a745'"
+    >
+        <i class="fas fa-plus"></i>
+    </a>
+
+</div>
 
 <br>
 

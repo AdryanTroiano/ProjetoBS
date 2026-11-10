@@ -267,7 +267,7 @@ if (!isset($_SESSION['usuario'])) {
 
                 <a
                     class="nav-link dropdown-toggle"
-                    href="#"
+                    href="index.php?rota=doacoes"
                 >
 
                     <ion-icon
@@ -276,39 +276,12 @@ if (!isset($_SESSION['usuario'])) {
                     ></ion-icon>
 
                     Doações
+                    
 
                 </a>
-
-
-                <ul class="dropdown-menu">
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=nova-doacao"
-                        >
-                            Cadastrar Doação
-                        </a>
-
-                    </li>
-
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=doacoes"
-                        >
-                            Listar Doações
-                        </a>
-
-                    </li>
-
-                </ul>
+               
 
             </div>
-
 
             <!-- RETIRADAS -->
 
@@ -316,7 +289,7 @@ if (!isset($_SESSION['usuario'])) {
 
                 <a
                     class="nav-link dropdown-toggle"
-                    href="#"
+                    href="index.php?rota=retiradas"
                 >
 
                     <ion-icon
@@ -328,34 +301,6 @@ if (!isset($_SESSION['usuario'])) {
 
                 </a>
 
-
-                <ul class="dropdown-menu">
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=nova-retirada"
-                        >
-                            Cadastrar Retirada
-                        </a>
-
-                    </li>
-
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=retiradas"
-                        >
-                            Listar Retiradas
-                        </a>
-
-                    </li>
-
-                </ul>
-
             </div>
 
 
@@ -365,7 +310,7 @@ if (!isset($_SESSION['usuario'])) {
 
                 <a
                     class="nav-link dropdown-toggle"
-                    href="#"
+                    href="index.php?rota=ubs"
                 >
 
                     <ion-icon
@@ -377,38 +322,12 @@ if (!isset($_SESSION['usuario'])) {
 
                 </a>
 
-
-                <ul class="dropdown-menu">
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=nova-ubs"
-                        >
-                            Cadastrar UBS
-                        </a>
-
-                    </li>
-
-
-                    <li>
-
-                        <a
-                            class="dropdown-item"
-                            href="index.php?rota=ubs"
-                        >
-                            Listar UBS
-                        </a>
-
-                    </li>
-
-                </ul>
-
             </div>
 
 
             <!-- USUÁRIO -->
+
+            
 
             <div class="nav-item dropdown">
 
@@ -445,18 +364,6 @@ if (!isset($_SESSION['usuario'])) {
                                 href="index.php?rota=usuarios"
                             >
                                 Funcionários
-                            </a>
-
-                        </li>
-
-
-                        <li>
-
-                            <a
-                                class="dropdown-item"
-                                href="index.php?rota=novo-usuario"
-                            >
-                                Cadastrar Funcionário
                             </a>
 
                         </li>
@@ -657,4 +564,3 @@ if (
 </body>
 
 </html>
-```

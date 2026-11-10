@@ -535,6 +535,7 @@ select {
     box-sizing: border-box;
     font-size: 14px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .required{
@@ -1252,6 +1253,7 @@ select,
     padding: 8px 12px !important;
     box-shadow: none !important;
     transition: border-color 0.2s ease-in-out !important;
+    cursor: pointer;
 }
 
 /* Efeito azul sutil e elegante ao clicar dentro da caixa de texto */
@@ -1291,7 +1293,7 @@ button.btn-primary,
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
-    cursor: poi nter;
+    cursor: pointer;
     transition: background-color 0.2s !important;
 }
 

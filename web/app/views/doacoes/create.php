@@ -176,7 +176,7 @@
                         </label>
 
                         <input
-                            type="number"
+                            type="text"
                             name="quantidade_ml"
                             id="quantidade_ml"
                             min="1"
