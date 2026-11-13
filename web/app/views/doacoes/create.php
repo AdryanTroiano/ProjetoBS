@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -14,6 +15,18 @@
     >
 
     <style>
+        /* Container branco */
+        .doacao-container-branco {
+            width: 50%;
+            max-width: 50%;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
+
         /* Campo de pesquisa de doadores */
         #selectDoador + .ts-wrapper {
             width: 100%;
@@ -29,192 +42,203 @@
         #selectDoador + .ts-wrapper .ts-dropdown {
             font-size: 14px;
         }
+
+        @media (max-width: 600px) {
+            .doacao-container-branco {
+                padding: 15px;
+                margin: 15px auto;
+            }
+        }
     </style>
 
 </head>
 
 <body>
 
-<div class="container">
+<div class="doacao-container-branco">
 
-    <h1 id="path2">Cadastrar Doação</h1>
+    <div class="container">
 
-    <form action="index.php?rota=cadastrar-doacao" method="POST">
+        <h1 id="path2">Cadastrar Doação</h1>
 
-        <div class="contentform">
-            <div class="form-container">
+        <form action="index.php?rota=cadastrar-doacao" method="POST">
 
-                <!-- DOADOR -->
-                <div class="row">
-                    <div class="column">
+            <div class="contentform">
+                <div class="form-container">
 
-                        <label for="selectDoador">
-                            Doador:<span class="required">*</span>
-                        </label>
+                    <!-- DOADOR -->
+                    <div class="row">
+                        <div class="column">
 
-                        <select
-                            name="doador_id"
-                            id="selectDoador"
-                            placeholder="Digite o nome do doador..."
-                            required
-                        >
+                            <label for="selectDoador">
+                                Doador:<span class="required">*</span>
+                            </label>
 
-                            <option value="">Selecione o doador</option>
-
-                            <?php foreach ($doadores as $doador): ?>
-
-                                <?php
-                                    $validado = (int) ($doador['validado'] ?? 0);
-                                ?>
-
-                                <?php if ($validado === 1): ?>
-
-                                    <option value="<?= (int) $doador['id']; ?>">
-                                        <?= htmlspecialchars(
-                                            $doador['nome'],
-                                            ENT_QUOTES,
-                                            'UTF-8'
-                                        ); ?>
-                                    </option>
-
-                                <?php else: ?>
-
-                                    <option
-                                        value="pendente_<?= (int) $doador['id']; ?>"
-                                        disabled
-                                    >
-                                        <?= htmlspecialchars(
-                                            $doador['nome'],
-                                            ENT_QUOTES,
-                                            'UTF-8'
-                                        ); ?>
-                                        — Pendente de validação
-                                    </option>
-
-                                <?php endif; ?>
-
-                            <?php endforeach; ?>
-
-                        </select>
-
-                    </div>
-                </div>
-
-                <!-- AVISO DE VALIDAÇÃO -->
-                <div
-                    id="avisoValidacao"
-                    style="
-                        display: none;
-                        margin-top: 5px;
-                        margin-bottom: 15px;
-                        padding: 10px;
-                        border-radius: 5px;
-                        background-color: #fff3cd;
-                        color: #856404;
-                    "
-                >
-                    Doadores pendentes precisam ser validados pelo
-                    aplicativo antes de realizar uma doação.
-                </div>
-
-                <!-- UBS -->
-                <div class="row">
-                    <div class="column">
-
-                        <label for="ubs_id">
-                            UBS:<span class="required">*</span>
-                        </label>
-
-                        <select name="ubs_id" id="ubs_id" required>
-
-                            <option value="" disabled selected>
-                                Selecione a UBS
-                            </option>
-
-                            <?php foreach ($ubs as $unidade): ?>
-
-                                <option value="<?= (int) $unidade['id']; ?>">
-                                    <?= htmlspecialchars(
-                                        $unidade['nome'],
-                                        ENT_QUOTES,
-                                        'UTF-8'
-                                    ); ?>
-                                </option>
-
-                            <?php endforeach; ?>
-
-                        </select>
-
-                    </div>
-                </div>
-
-                <!-- DATA DA DOAÇÃO -->
-                <div class="row">
-                    <div class="column">
-
-                        <label for="data_doacao">
-                            Data da Doação:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="date"
-                            name="data_doacao"
-                            id="data_doacao"
-                            value="<?= date('Y-m-d'); ?>"
-                            required
-                        >
-
-                    </div>
-                </div>
-
-                <!-- QUANTIDADE -->
-                <div class="row">
-                    <div class="column">
-
-                        <label for="quantidade_ml">
-                            Quantidade (ml):<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="quantidade_ml"
-                            id="quantidade_ml"
-                            min="1"
-                            required
-                        >
-
-                    </div>
-                </div>
-
-                <!-- BOTÕES -->
-                <div class="row">
-                    <div class="column button-column">
-
-                        <div class="botoes-edicao">
-
-                            <a
-                                href="index.php?rota=doacoes"
-                                class="btn-cancelar-edicao"
+                            <select
+                                name="doador_id"
+                                id="selectDoador"
+                                placeholder="Digite o nome do doador..."
+                                required
                             >
-                                Cancelar
-                            </a>
 
-                            <button
-                                type="submit"
-                                class="btn-salvar-edicao"
-                            >
-                                Cadastrar
-                            </button>
+                                <option value="">Selecione o doador</option>
+
+                                <?php foreach ($doadores as $doador): ?>
+
+                                    <?php
+                                        $validado = (int) ($doador['validado'] ?? 0);
+                                    ?>
+
+                                    <?php if ($validado === 1): ?>
+
+                                        <option value="<?= (int) $doador['id']; ?>">
+                                            <?= htmlspecialchars(
+                                                $doador['nome'],
+                                                ENT_QUOTES,
+                                                'UTF-8'
+                                            ); ?>
+                                        </option>
+
+                                    <?php else: ?>
+
+                                        <option
+                                            value="pendente_<?= (int) $doador['id']; ?>"
+                                            disabled
+                                        >
+                                            <?= htmlspecialchars(
+                                                $doador['nome'],
+                                                ENT_QUOTES,
+                                                'UTF-8'
+                                            ); ?>
+                                            — Pendente de validação
+                                        </option>
+
+                                    <?php endif; ?>
+
+                                <?php endforeach; ?>
+
+                            </select>
 
                         </div>
-
                     </div>
+
+                    <!-- AVISO DE VALIDAÇÃO -->
+                    <div
+                        id="avisoValidacao"
+                        style="
+                            display: none;
+                            margin-top: 5px;
+                            margin-bottom: 15px;
+                            padding: 10px;
+                            border-radius: 5px;
+                            background-color: #fff3cd;
+                            color: #856404;
+                        "
+                    >
+                        Doadores pendentes precisam ser validados pelo
+                        aplicativo antes de realizar uma doação.
+                    </div>
+
+                    <!-- UBS -->
+                    <div class="row">
+                        <div class="column">
+
+                            <label for="ubs_id">
+                                UBS:<span class="required">*</span>
+                            </label>
+
+                            <select name="ubs_id" id="ubs_id" required>
+
+                                <option value="" disabled selected>
+                                    Selecione a UBS
+                                </option>
+
+                                <?php foreach ($ubs as $unidade): ?>
+
+                                    <option value="<?= (int) $unidade['id']; ?>">
+                                        <?= htmlspecialchars(
+                                            $unidade['nome'],
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        ); ?>
+                                    </option>
+
+                                <?php endforeach; ?>
+
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <!-- DATA DA DOAÇÃO -->
+                    <div class="row">
+                        <div class="column">
+
+                            <label for="data_doacao">
+                                Data da Doação:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                name="data_doacao"
+                                id="data_doacao"
+                                value="<?= date('Y-m-d'); ?>"
+                                required
+                            >
+
+                        </div>
+                    </div>
+
+                    <!-- QUANTIDADE -->
+                    <div class="row">
+                        <div class="column">
+
+                            <label for="quantidade_ml">
+                                Quantidade (ml):<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="quantidade_ml"
+                                id="quantidade_ml"
+                                min="1"
+                                required
+                            >
+
+                        </div>
+                    </div>
+
+                    <!-- BOTÕES -->
+                    <div class="row">
+                        <div class="column button-column">
+
+                            <div class="botoes-edicao">
+
+                                <a
+                                    href="index.php?rota=doacoes"
+                                    class="btn-cancelar-edicao"
+                                >
+                                    Cancelar
+                                </a>
+
+                                <button
+                                    type="submit"
+                                    class="btn-salvar-edicao"
+                                >
+                                    Cadastrar
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
 
-    </form>
+        </form>
+
+    </div>
 
 </div>
 

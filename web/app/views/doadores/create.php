@@ -1,343 +1,351 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
-
     <title>Cadastrar Doadores</title>
 
+    <style>
+        /* Container branco */
+        .doador-container-branco {
+            width: 80%;
+            max-width: 80%;
+            margin: 30px auto;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 600px) {
+            .doador-container-branco {
+                padding: 15px;
+                margin: 15px auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="doador-container-branco">
 
-    <h1 id="path2">
-        Cadastrar Doadores
-    </h1>
+    <div class="container">
 
+        <h1 id="path2">
+            Cadastrar Doadores
+        </h1>
 
-    <form
-        action="index.php?rota=cadastrar-doador"
-        method="POST"
-    >
+        <form
+            action="index.php?rota=cadastrar-doador"
+            method="POST"
+        >
 
-        <div class="contentform">
+            <div class="contentform">
 
-            <div class="form-container">
+                <div class="form-container">
 
+                    <!-- NOME -->
+                    <div class="row">
 
-                <!-- NOME -->
-                <div class="row">
+                        <div class="column">
 
-                    <div class="column">
+                            <label for="nome">
+                                Nome:<span class="required">*</span>
+                            </label>
 
-                        <label for="nome">
-                            Nome:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="nome"
-                            id="nome"
-                            placeholder="Digite o nome"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- CPF / SEXO / DATA DE NASCIMENTO -->
-                <div class="row">
-
-                    <div class="column">
-
-                        <label for="cpf">
-                            CPF:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="cpf"
-                            id="cpf"
-                            placeholder="Digite o CPF"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="column">
-
-                        <label for="sexo">
-                            Sexo:<span class="required">*</span>
-                        </label>
-
-                        <select
-                            name="sexo"
-                            id="sexo"
-                            required
-                        >
-
-                            <option
-                                value=""
-                                disabled
-                                selected
+                            <input
+                                type="text"
+                                name="nome"
+                                id="nome"
+                                placeholder="Digite o nome"
+                                required
                             >
-                                Selecione o sexo:
-                            </option>
 
-                            <option value="M">
-                                Masculino
-                            </option>
-
-                            <option value="F">
-                                Feminino
-                            </option>
-
-                        </select>
+                        </div>
 
                     </div>
 
+                    <!-- CPF / SEXO / DATA DE NASCIMENTO -->
+                    <div class="row">
 
-                    <div class="column">
+                        <div class="column">
 
-                        <label for="data-nascimento">
-                            Data de Nascimento:<span class="required">*</span>
-                        </label>
+                            <label for="cpf">
+                                CPF:<span class="required">*</span>
+                            </label>
 
-                        <input
-                            type="date"
-                            name="nasc"
-                            id="data-nascimento"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- E-MAIL / CEP / ENDEREÇO -->
-                <div class="row">
-
-                    <div class="column">
-
-                        <label for="email">
-                            E-mail:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            placeholder="Digite o e-mail"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="column">
-
-                        <label for="cep">
-                            CEP:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="cep"
-                            id="cep"
-                            placeholder="Digite o CEP"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="row" style="display: flex; gap: 20px; margin-bottom: 20px; width: 100%;">
-
-                    <!-- Endereço assume a maior parte da linha -->
-                    <div class="column" style="flex: 3.5;">
-                        <label for="endereco">
-                            Endereço:<span class="required">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="endereco"
-                            id="endereco"
-                            placeholder="Digite o endereço"
-                            required
-                            style="width: 100% !important; box-sizing: border-box;"
-                        >
-                    </div>
-
-                </div>
-
-
-                <!-- Número fica bem pequenininho e compacto ao lado -->
-                    <div class="column" style="flex: 0.8;">
-                        <label for="numero">
-                            Número:<span class="required">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="numero"
-                            id="numero"
-                            placeholder="Ex: 163"
-                            required
-                            style="width: 100% !important; box-sizing: border-box;"
-                        >
-                    </div>
-
-
-                    <div class="column">
-
-                        <label for="bairro">
-                            Bairro:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="bairro"
-                            id="bairro"
-                            placeholder="Digite o bairro"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="column">
-
-                        <label for="complemento">
-                            Complemento:
-                        </label>
-
-                        <input
-                            type="text"
-                            name="complemento"
-                            id="complemento"
-                            placeholder="Complemento"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- TELEFONE / PESO / TIPO SANGUÍNEO -->
-                <div class="row">
-
-                    <div class="column">
-
-                        <label for="telefone">
-                            Telefone:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="telefone"
-                            id="telefone"
-                            placeholder="Digite o telefone"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="column">
-
-                        <label for="peso">
-                            Peso:<span class="required">*</span>
-                        </label>
-
-                        <input
-                            type="text"
-                            name="peso"
-                            id="peso"
-                            placeholder="Ex: 65"
-                            min="1"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="column">
-
-                        <label for="tipo-sanguineo">
-                            Tipo Sanguíneo:<span class="required">*</span>
-                        </label>
-
-                        <select
-                            name="tipo_sangue_id"
-                            id="tipo-sanguineo"
-                            required
-                        >
-
-                            <option
-                                value=""
-                                disabled
-                                selected
+                            <input
+                                type="text"
+                                name="cpf"
+                                id="cpf"
+                                placeholder="Digite o CPF"
+                                required
                             >
-                                Selecione o tipo sanguíneo
-                            </option>
 
+                        </div>
 
-                            <?php foreach ($tiposSangue as $tipo): ?>
+                        <div class="column">
+
+                            <label for="sexo">
+                                Sexo:<span class="required">*</span>
+                            </label>
+
+                            <select
+                                name="sexo"
+                                id="sexo"
+                                required
+                            >
 
                                 <option
-                                    value="<?= (int) $tipo['id']; ?>"
+                                    value=""
+                                    disabled
+                                    selected
                                 >
-                                    <?= htmlspecialchars(
-                                        $tipo['tipo'],
-                                        ENT_QUOTES,
-                                        'UTF-8'
-                                    ); ?>
+                                    Selecione o sexo:
                                 </option>
 
-                            <?php endforeach; ?>
+                                <option value="M">
+                                    Masculino
+                                </option>
 
-                        </select>
+                                <option value="F">
+                                    Feminino
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="column">
+
+                            <label for="data-nascimento">
+                                Data de Nascimento:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="date"
+                                name="nasc"
+                                id="data-nascimento"
+                                required
+                            >
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <!-- E-MAIL / CEP / ENDEREÇO -->
+                    <div class="row">
 
+                        <div class="column">
 
-                <!-- BOTÕES -->
-                <div class="row">
+                            <label for="email">
+                                E-mail:<span class="required">*</span>
+                            </label>
 
-                    <div class="column button-column">
-
-                        <div class="botoes-edicao">
-
-                            <!-- CANCELAR -->
-                            <a
-                                href="index.php?rota=doadores"
-                                class="btn-cancelar-edicao"
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="Digite o e-mail"
+                                required
                             >
-                                Cancelar
-                            </a>
 
+                        </div>
 
-                            <!-- ENVIAR -->
-                            <button
-                                type="submit"
-                                class="btn-salvar-edicao"
+                        <div class="column">
+
+                            <label for="cep">
+                                CEP:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="cep"
+                                id="cep"
+                                placeholder="Digite o CEP"
+                                required
                             >
-                                Cadastrar
-                            </button>
+
+                        </div>
+
+                        <div class="row" style="display: flex; gap: 20px; margin-bottom: 20px; width: 100%;">
+
+                            <!-- Endereço assume a maior parte da linha -->
+                            <div class="column" style="flex: 3.5;">
+
+                                <label for="endereco">
+                                    Endereço:<span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    name="endereco"
+                                    id="endereco"
+                                    placeholder="Digite o endereço"
+                                    required
+                                    style="width: 100% !important; box-sizing: border-box;"
+                                >
+
+                            </div>
+
+                        </div>
+
+                        <!-- Número fica bem pequenininho e compacto ao lado -->
+                        <div class="column" style="flex: 0.8;">
+
+                            <label for="numero">
+                                Número:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="numero"
+                                id="numero"
+                                placeholder="Ex: 163"
+                                required
+                                style="width: 100% !important; box-sizing: border-box;"
+                            >
+
+                        </div>
+
+                        <div class="column">
+
+                            <label for="bairro">
+                                Bairro:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="bairro"
+                                id="bairro"
+                                placeholder="Digite o bairro"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="column">
+
+                            <label for="complemento">
+                                Complemento:
+                            </label>
+
+                            <input
+                                type="text"
+                                name="complemento"
+                                id="complemento"
+                                placeholder="Complemento"
+                            >
+
+                        </div>
+
+                    </div>
+
+                    <!-- TELEFONE / PESO / TIPO SANGUÍNEO -->
+                    <div class="row">
+
+                        <div class="column">
+
+                            <label for="telefone">
+                                Telefone:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="telefone"
+                                id="telefone"
+                                placeholder="Digite o telefone"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="column">
+
+                            <label for="peso">
+                                Peso:<span class="required">*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                name="peso"
+                                id="peso"
+                                placeholder="Ex: 65"
+                                min="1"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="column">
+
+                            <label for="tipo-sanguineo">
+                                Tipo Sanguíneo:<span class="required">*</span>
+                            </label>
+
+                            <select
+                                name="tipo_sangue_id"
+                                id="tipo-sanguineo"
+                                required
+                            >
+
+                                <option
+                                    value=""
+                                    disabled
+                                    selected
+                                >
+                                    Selecione o tipo sanguíneo
+                                </option>
+
+                                <?php foreach ($tiposSangue as $tipo): ?>
+
+                                    <option
+                                        value="<?= (int) $tipo['id']; ?>"
+                                    >
+                                        <?= htmlspecialchars(
+                                            $tipo['tipo'],
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        ); ?>
+                                    </option>
+
+                                <?php endforeach; ?>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BOTÕES -->
+                    <div class="row">
+
+                        <div class="column button-column">
+
+                            <div class="botoes-edicao">
+
+                                <!-- CANCELAR -->
+                                <a
+                                    href="index.php?rota=doadores"
+                                    class="btn-cancelar-edicao"
+                                >
+                                    Cancelar
+                                </a>
+
+                                <!-- ENVIAR -->
+                                <button
+                                    type="submit"
+                                    class="btn-salvar-edicao"
+                                >
+                                    Cadastrar
+                                </button>
+
+                            </div>
 
                         </div>
 
@@ -347,29 +355,25 @@
 
             </div>
 
-        </div>
+        </form>
 
-    </form>
+    </div>
 
 </div>
-
 
 <!-- JQUERY -->
 <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
 ></script>
 
-
 <!-- JQUERY MASK -->
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
 ></script>
 
-
 <script>
 
 $(document).ready(function() {
-
 
     /* ==========================================
        MÁSCARAS
@@ -378,10 +382,8 @@ $(document).ready(function() {
     $("input[name='cpf']")
         .mask("999.999.999-99");
 
-
     $("input[name='telefone']")
         .mask("(99) 99999-9999");
-
 
     $("input[name='cep']")
         .mask("99999-999");
@@ -396,7 +398,6 @@ $(document).ready(function() {
         let cep = $(this)
             .val()
             .replace(/\D/g, '');
-
 
         if (cep.length === 8) {
 
@@ -448,16 +449,13 @@ $(document).ready(function() {
         const nascimento =
             new Date(dataNascimento);
 
-
         let idade =
             hoje.getFullYear() -
             nascimento.getFullYear();
 
-
         const m =
             hoje.getMonth() -
             nascimento.getMonth();
-
 
         if (
             m < 0 ||
@@ -471,7 +469,6 @@ $(document).ready(function() {
             idade--;
 
         }
-
 
         return idade;
 
@@ -489,7 +486,6 @@ $(document).ready(function() {
             ''
         );
 
-
         if (
             cpf.length !== 11 ||
             /^(\d)\1+$/.test(cpf)
@@ -499,9 +495,7 @@ $(document).ready(function() {
 
         }
 
-
         let soma = 0;
-
 
         for (let i = 0; i < 9; i++) {
 
@@ -513,10 +507,8 @@ $(document).ready(function() {
 
         }
 
-
         let resto =
             11 - (soma % 11);
-
 
         if (
             resto === 10 ||
@@ -526,7 +518,6 @@ $(document).ready(function() {
             resto = 0;
 
         }
-
 
         if (
             resto !==
@@ -539,9 +530,7 @@ $(document).ready(function() {
 
         }
 
-
         soma = 0;
-
 
         for (let i = 0; i < 10; i++) {
 
@@ -553,10 +542,8 @@ $(document).ready(function() {
 
         }
 
-
         resto =
             11 - (soma % 11);
-
 
         if (
             resto === 10 ||
@@ -566,7 +553,6 @@ $(document).ready(function() {
             resto = 0;
 
         }
-
 
         return (
             resto ===
@@ -586,11 +572,9 @@ $(document).ready(function() {
         "submit",
         function(e) {
 
-
             /* CPF */
             const cpf =
                 $("#cpf").val();
-
 
             if (!validarCPF(cpf)) {
 
@@ -613,7 +597,6 @@ $(document).ready(function() {
                     $("#peso").val()
                 );
 
-
             if (peso < 50) {
 
                 e.preventDefault();
@@ -632,7 +615,6 @@ $(document).ready(function() {
             /* DATA DE NASCIMENTO */
             const dataNascimento =
                 $("#data-nascimento").val();
-
 
             if (!dataNascimento) {
 
@@ -654,7 +636,6 @@ $(document).ready(function() {
                 calcularIdade(
                     dataNascimento
                 );
-
 
             if (idade < 16) {
 
@@ -679,5 +660,4 @@ $(document).ready(function() {
 </script>
 
 </body>
-
 </html>
