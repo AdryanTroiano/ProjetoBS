@@ -1,4 +1,3 @@
-
 <?php
 
 class Database
@@ -7,7 +6,7 @@ class Database
     private const PORT = '3307';
     private const DB_NAME = 'BSTQ';
     private const USER = 'root';
-    private const PASSWORD = '';
+    private const PASSWORD = 'teste@123';
 
     private static ?PDO $connection = null;
 
@@ -32,7 +31,7 @@ class Database
                 );
 
             } catch (PDOException $e) {
-                die('Falha na conexão com o banco de dados: ' . $e->getMessage());
+                die('** Falha na conexão com o banco de dados: ' . $e->getMessage());
             }
         }
 

@@ -1,0 +1,19 @@
+services:
+  # Servidor Web + API/Front PHP
+  web:
+    build: ./web
+    container_name: bancosangue_web
+    restart: always
+    ports:
+      - "15026:80"  # Acesse o sistema via http://IP_DO_SERVIDOR:8080
+    volumes:
+      - ./web:/var/www/html  # Mapeia a raiz inteira (bancosangue/) permitindo edição em tempo real
+    #depends_on:
+    #  - dbmaria
+    networks:
+      - fatectqnet
+
+
+networks:
+  fatectqnet:
+    external: true

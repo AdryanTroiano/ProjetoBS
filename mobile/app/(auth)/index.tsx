@@ -42,7 +42,7 @@ export default function Login() {
 
       console.log("Tentando login...", usuario);
 
-      const response = await api.post("/auth/login.php", {
+      const response = await api.post("/login", {
         usuario: usuario,
         senha: userpassword,
       });
