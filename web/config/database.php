@@ -2,7 +2,7 @@
 
 class Database
 {
-    private const HOST = 'dbmaria';
+    private const HOST = 'localhost';
     private const DB_NAME = 'bstq';
     private const USER = 'root';
     private const PASSWORD = 'teste@123';

@@ -5,7 +5,7 @@ services:
     container_name: bancosangue_web
     restart: always
     ports:
-      - "8281:80"  # Acesse o sistema via http://IP_DO_SERVIDOR:8080
+      - "15026:80"  # Acesse o sistema via http://IP_DO_SERVIDOR:8080
     volumes:
       - ./web:/var/www/html  # Mapeia a raiz inteira (bancosangue/) permitindo edição em tempo real
     #depends_on:
