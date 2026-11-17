@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://192.168.13.243:3000",
+  baseURL: "http://10.0.2.2/projetobs/back/api",
   headers: {
     "Content-Type": "application/json",
   },

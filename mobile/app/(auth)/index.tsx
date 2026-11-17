@@ -1,3 +1,4 @@
+
 import api from "../../services/api";
 
 import { useRouter } from "expo-router";
@@ -42,7 +43,7 @@ export default function Login() {
 
       console.log("Tentando login...", usuario);
 
-      const response = await api.post("/login", {
+      const response = await api.post("/auth/login.php", {
         usuario: usuario,
         senha: userpassword,
       });
@@ -115,7 +116,6 @@ export default function Login() {
 
       </View>
 
-
       <View style={styles.main}>
 
         <Text style={styles.label}>
@@ -132,7 +132,6 @@ export default function Login() {
           editable={!carregando}
         />
 
-
         <Text style={styles.label}>
           Senha:
         </Text>
@@ -146,7 +145,6 @@ export default function Login() {
           editable={!carregando}
           onSubmitEditing={onPressAcessar}
         />
-
 
         <TouchableOpacity
           style={styles.butom}
@@ -168,7 +166,6 @@ export default function Login() {
         </TouchableOpacity>
 
       </View>
-
 
       <View style={styles.footer}>
 
