@@ -1,6 +1,6 @@
 <div class="dashboard">
 
-    <h1 id="pathdash">Estoque de Sangue</h1>
+    <h1 id="pathdash">Movimentações</h1>
 
     <?php if (empty($estoqueSangue)): ?>
 
@@ -89,7 +89,7 @@
 
 
 <h2 class="dashboard-movimentacoes-title">
-    Movimentações
+    Movimentações recentes
 </h2>
 
 
