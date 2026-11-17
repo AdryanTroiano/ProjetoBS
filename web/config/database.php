@@ -3,10 +3,10 @@
 class Database
 {
     private const HOST = 'localhost';
-    private const PORT = '3307';
+    private const PORT = '3306';
     private const DB_NAME = 'BSTQ';
     private const USER = 'root';
-    private const PASSWORD = 'teste@123';
+    private const PASSWORD = '';
 
     private static ?PDO $connection = null;
 
