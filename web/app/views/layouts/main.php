@@ -251,7 +251,7 @@ if (!isset($_SESSION['usuario'])) {
 
                     <ion-icon
                         class="icones"
-                        name="list-circle-outline"
+                        name="people-outline"
                     ></ion-icon>
 
                     Doadores
@@ -272,16 +272,15 @@ if (!isset($_SESSION['usuario'])) {
 
                     <ion-icon
                         class="icones"
-                        name="list-circle-outline"
+                        name="water-outline"
                     ></ion-icon>
 
                     Doações
-                    
 
                 </a>
-               
 
             </div>
+
 
             <!-- RETIRADAS -->
 
@@ -294,7 +293,7 @@ if (!isset($_SESSION['usuario'])) {
 
                     <ion-icon
                         class="icones"
-                        name="list-circle-outline"
+                        name="exit-outline"
                     ></ion-icon>
 
                     Retiradas
@@ -315,7 +314,7 @@ if (!isset($_SESSION['usuario'])) {
 
                     <ion-icon
                         class="icones"
-                        name="business-outline"
+                        name="medkit-outline"
                     ></ion-icon>
 
                     UBS
@@ -326,8 +325,6 @@ if (!isset($_SESSION['usuario'])) {
 
 
             <!-- USUÁRIO -->
-
-            
 
             <div class="nav-item dropdown">
 
