@@ -1,8 +1,10 @@
+
 <?php
 
 class Database
 {
     private const HOST = 'localhost';
+    private const PORT = '3307';
     private const DB_NAME = 'BSTQ';
     private const USER = 'root';
     private const PASSWORD = '';
@@ -14,7 +16,7 @@ class Database
         if (self::$connection === null) {
             try {
                 self::$connection = new PDO(
-                    'mysql:host=' . self::HOST . ';port=3307;dbname=' . self::DB_NAME . ';charset=utf8mb4',
+                    'mysql:host=' . self::HOST . ';port=' . self::PORT . ';dbname=' . self::DB_NAME . ';charset=utf8mb4',
                     self::USER,
                     self::PASSWORD
                 );
