@@ -1,11 +1,10 @@
-
 <?php
 
 class Database
 {
-    private const HOST = 'localhost';
-    private const PORT = '3307';
-    private const DB_NAME = 'BSTQ';
+    private const HOST = 'dbmaria';
+    private const PORT = '3306';
+    private const DB_NAME = 'bstq';
     private const USER = 'root';
     private const PASSWORD = 'teste@123';
 
