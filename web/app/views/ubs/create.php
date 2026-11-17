@@ -93,8 +93,9 @@
                                 </a>
 
                                 <!-- CADASTRAR -->
-                                <button type="submit" class="btn-enviar-cadastro btn-salvar-edicao" style="border: none !important;">
-                                    Cadastrar
+                                <button type="submit" class="btn-enviar-cadastro btn-salvar-edicao"
+                                    style="border: none !important; text-transform: none !important; font-size: 14px !important;">
+                                        Cadastrar
                                 </button>
 
                             </div>
