@@ -1,3 +1,4 @@
+
 <?php
 
 header('Content-Type: application/json; charset=utf-8');
@@ -11,15 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../../web/config/database.php';
 
-
-// =========================
-// VERIFICA O MÉTODO
-// =========================
-
+// Verifica o método
 if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
-
     http_response_code(405);
 
     echo json_encode([
@@ -30,18 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'PUT') {
     exit;
 }
 
-
-// =========================
-// RECEBE O JSON
-// =========================
-
+// Recebe o JSON
 $conteudo = file_get_contents('php://input');
-
 $dados = json_decode($conteudo, true);
 
-
 if (!is_array($dados)) {
-
     http_response_code(400);
 
     echo json_encode([
@@ -52,26 +41,13 @@ if (!is_array($dados)) {
     exit;
 }
 
-
-// =========================
-// DADOS
-// =========================
-
-$id = isset($dados['id'])
-    ? (int) $dados['id']
-    : 0;
-
+// Dados
+$id = isset($dados['id']) ? (int) $dados['id'] : 0;
 $email = trim($dados['email'] ?? '');
-
 $telefone = trim($dados['telefone'] ?? '');
 
-
-// =========================
-// VALIDAÇÕES
-// =========================
-
+// Validações
 if ($id <= 0) {
-
     http_response_code(400);
 
     echo json_encode([
@@ -82,12 +58,7 @@ if ($id <= 0) {
     exit;
 }
 
-
-if (
-    $email !== '' &&
-    !filter_var($email, FILTER_VALIDATE_EMAIL)
-) {
-
+if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     http_response_code(400);
 
     echo json_encode([
@@ -98,18 +69,11 @@ if (
     exit;
 }
 
-
-// =========================
-// ATUALIZA O DOADOR
-// =========================
-
+// Atualiza o doador
 try {
-
     $db = Database::connect();
 
-
     // Verifica se o doador existe
-
     $sqlBusca = "
         SELECT id
         FROM doadores
@@ -118,12 +82,9 @@ try {
     ";
 
     $stmtBusca = $db->prepare($sqlBusca);
-
     $stmtBusca->execute([$id]);
 
-
     if (!$stmtBusca->fetch()) {
-
         http_response_code(404);
 
         echo json_encode([
@@ -134,40 +95,26 @@ try {
         exit;
     }
 
-
     // Atualiza somente os dados de contato
-
     $sql = "
         UPDATE doadores
-        SET
-            email = ?,
-            telefone = ?
+        SET email = ?, telefone = ?
         WHERE id = ?
     ";
 
     $stmt = $db->prepare($sql);
-
     $stmt->execute([
         $email,
         $telefone,
         $id
     ]);
 
-
-    // =========================
-    // SUCESSO
-    // =========================
-
-    http_response_code(200);
-
     echo json_encode([
         'sucesso' => true,
         'mensagem' => 'Dados do doador atualizados com sucesso.'
     ], JSON_UNESCAPED_UNICODE);
 
-
 } catch (Throwable $e) {
-
     http_response_code(500);
 
     echo json_encode([
